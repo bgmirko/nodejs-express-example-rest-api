@@ -5,8 +5,20 @@
   "repository": "https://github.com/bgmirko/book-management-q-software.git",
   "author": "Mirko Martinovic <mirko.martinovic@quantox.com>",
   "license": "MIT",
+  "scripts": {
+    "build": "rm -rf dist && tsc",
+    "dev": "tsnd --respawn src/server.ts",
+    "start": "node dist/server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
   "dependencies": {
     "@types/node": "^18.11.9",
     "express": "^4.18.2"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.14",
+    "ts-node": "^10.9.1",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^4.8.4"
   }
 }

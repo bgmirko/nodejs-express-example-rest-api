@@ -1,5 +1,5 @@
 Arguments: 
-  /usr/bin/node /usr/share/yarn/bin/yarn.js build
+  /usr/bin/node /usr/share/yarn/bin/yarn.js add @types/expres @types/node ts-node ts-node-dev
 
 PATH: 
   /home/quantox/.local/share/umake/bin:/home/quantox/.local/share/umake/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
@@ -14,31 +14,36 @@ Platform:
   linux x64
 
 Trace: 
-  SyntaxError: /home/quantox/Documents/book-management-q-software/package.json: Unexpected token } in JSON at position 518
-      at JSON.parse (<anonymous>)
-      at /usr/share/yarn/lib/cli.js:1629:59
-      at Generator.next (<anonymous>)
-      at step (/usr/share/yarn/lib/cli.js:310:30)
-      at /usr/share/yarn/lib/cli.js:321:13
+  Error: https://registry.yarnpkg.com/@types%2fexpres: Not found
+      at Request.params.callback [as _callback] (/usr/share/yarn/lib/cli.js:66145:18)
+      at Request.self.callback (/usr/share/yarn/lib/cli.js:140890:22)
+      at Request.emit (node:events:513:28)
+      at Request.<anonymous> (/usr/share/yarn/lib/cli.js:141862:10)
+      at Request.emit (node:events:513:28)
+      at IncomingMessage.<anonymous> (/usr/share/yarn/lib/cli.js:141784:12)
+      at Object.onceWrapper (node:events:627:28)
+      at IncomingMessage.emit (node:events:525:35)
+      at endReadableNT (node:internal/streams/readable:1358:12)
+      at processTicksAndRejections (node:internal/process/task_queues:83:21)
 
 npm manifest: 
   {
     "name": "book-management-q-software",
     "version": "1.0.0",
-    "main": "server.ts",
+    "main": "server.js",
     "repository": "https://github.com/bgmirko/book-management-q-software.git",
     "author": "Mirko Martinovic <mirko.martinovic@quantox.com>",
     "license": "MIT",
-    "dependencies": {
-      "@types/node": "^18.11.9",
-      "express": "^4.18.2"
-    },
     "scripts": {
       "build": "rm -rf dist && tsc",
       "dev": "tsnd --respawn src/index.ts",
       "start": "node dist/index.js",
       "test": "echo \"Error: no test specified\" && exit 1"
     },
+    "dependencies": {
+      "@types/node": "^18.11.9",
+      "express": "^4.18.2"
+    }
   }
 
 yarn manifest: 
