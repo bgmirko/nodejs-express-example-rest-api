@@ -3,7 +3,7 @@ import { RoleType } from "../../utils/enums";
 
 export interface BookAttributes {
   id: number;
-  userUid: number;
+  userUid: string;
   title: string;
   publisher: string;
   description: string;
@@ -14,7 +14,7 @@ export interface BookAttributes {
 module.exports = (sequelize, DataTypes) => {
   class Book extends Model<BookAttributes> implements BookAttributes {
     id: number;
-    userUid: number;
+    userUid: string;
     title: string;
     publisher: string;
     description: string;
