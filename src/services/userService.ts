@@ -54,4 +54,13 @@ export class UserService {
 
     return this.getUserById(id);
   }
+
+  static async getUserByUsername(username: string): Promise<User>{
+    return db.User.findOne({
+        where: {
+            username
+        },
+        raw: true,
+    });
+}
 }

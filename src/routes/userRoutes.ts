@@ -20,4 +20,12 @@ router.put("/users/update/:id", async (req: Request, res: Response) => {
   await UserController.updateUser(req, res);
 });
 
+router.post('/users/login', async(req: Request, res: Response)=> {
+  await UserController.loginUser(req,res);
+})
+
+router.post('/users/refresh_token', async(req: Request, res: Response) => {
+  await UserController.refreshToken(req, res);
+})
+
 export const userRoutes = router;
