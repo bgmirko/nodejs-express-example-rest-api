@@ -5,7 +5,6 @@ module.exports = {
 
     return queryInterface.bulkInsert('Books', [
       {
-        id: 1,
         userUid: "956b086d-f22d-43a3-8966-77d412555c3e",
         title: "The Night Ship",
         publisher: "Laguna",
@@ -16,7 +15,6 @@ module.exports = {
         updatedAt: new Date(),
       },
       {
-        id: 2,
         userUid: "956b086d-f22d-43a3-8966-77d412555c3e",
         title: "The Light Pirate",
         publisher: "Vulcan",
@@ -27,7 +25,6 @@ module.exports = {
         updatedAt: new Date(),
       },
       {
-        id: 3,
         userUid: "8b85d6f8-02ef-47d3-ab3c-f8074cbaf26e",
         title: "The Winners",
         publisher: "BOOKA",
@@ -38,7 +35,6 @@ module.exports = {
         updatedAt: new Date(),
       },
       {
-        id: 4,
         userUid: "8b85d6f8-02ef-47d3-ab3c-f8074cbaf26e",
         title: "Desert Star",
         publisher: "Besani",
@@ -49,7 +45,6 @@ module.exports = {
         updatedAt: new Date(),
       },
       {
-        id: 5,
         userUid: "956b086d-f22d-43a3-8966-77d412555cc6",
         title: "It Ends with Us",
         publisher: "Laguna",
@@ -60,7 +55,6 @@ module.exports = {
         updatedAt: new Date(),
       },
       {
-        id: 6,
         userUid: "956b086d-f22d-43a3-8966-77d412555cc6",
         title: "She's Gone",
         publisher: "Vulcan",
@@ -71,7 +65,6 @@ module.exports = {
         updatedAt: new Date(),
       },
       {
-        id: 7,
         userUid: "8b85d6f8-02ef-47d3-ab3c-f8074cbaf2d8",
         title: "Sweet Success: A Simple Recipe to Turn Your Passion into Profit",
         publisher: "BOOKS",
@@ -82,7 +75,6 @@ module.exports = {
         updatedAt: new Date(),
       },
       {
-        id: 8,
         userUid: "8b85d6f8-02ef-47d3-ab3c-f8074cbaf2d8",
         title: "The Choice",
         publisher: "BeoBook",
