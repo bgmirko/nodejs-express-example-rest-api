@@ -29,6 +29,10 @@ module.exports = (sequelize, DataTypes) => {
     status: boolean;
 
     static associate(models) {
+        User.hasMany(models.Book, {
+          foreignKey: "userId", 
+          onDelete: 'cascade'
+        });
     }
   }
   User.init(
