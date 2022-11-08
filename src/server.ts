@@ -1,6 +1,7 @@
 import "reflect-metadata";
 import express from "express";
 import db from "./database/models";
+import { userRoutes } from './routes/userRoutes';
 import { bookRoutes } from './routes/bookRoutes';
 
 const PORT = process.env.PORT ?? 3000;
@@ -13,6 +14,7 @@ app.get("/", (req, res) => {
     res.send("<h1>Hello from Q Software Book Management</h1>")
 })
 
+app.use(userRoutes);
 app.use(bookRoutes);
 
 //Error handler must be last app.use!!

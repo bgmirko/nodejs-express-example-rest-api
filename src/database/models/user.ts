@@ -9,7 +9,7 @@ export interface UserAttributes {
   password: string;
   email: string;
   role: RoleType
-  status: boolean;
+  active: boolean;
 }
 
 module.exports = (sequelize, DataTypes) => {
@@ -26,11 +26,11 @@ module.exports = (sequelize, DataTypes) => {
     password: string;
     email: string;
     role: RoleType;
-    status: boolean;
+    active: boolean;
 
     static associate(models) {
         User.hasMany(models.Book, {
-          foreignKey: "userId", 
+          foreignKey: "userUid", 
           onDelete: 'cascade'
         });
     }
@@ -66,7 +66,7 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.ENUM,
         values: Object.values(RoleType),
       },
-      status: {
+      active: {
         type: DataTypes.BOOLEAN,
         defaultValue: false,
       },
