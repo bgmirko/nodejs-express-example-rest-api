@@ -22,7 +22,7 @@ module.exports = (sequelize, DataTypes) => {
     numberOfPages: number;
 
     static associate(models) {
-      Book.belongsTo(models.User, { foreignKey: "userId", as: "Books" });
+      Book.belongsTo(models.User, { foreignKey: "userUid", as: "Books" });
     }
   }
   Book.init(
@@ -66,6 +66,6 @@ module.exports = (sequelize, DataTypes) => {
       sequelize,
       modelName: "Book",
     }
-  );
+  ); 
   return Book;
 };

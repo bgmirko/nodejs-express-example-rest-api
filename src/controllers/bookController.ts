@@ -1,5 +1,6 @@
 import { BookService } from "../services/bookService";
 import type { Request, Response } from "express";
+import { Book } from '../database/modelsTypes';
 
 export class BookController {
   static async getBooks(req: Request, res: Response) {
@@ -23,7 +24,7 @@ export class BookController {
 
   static async createBook(req: Request, res: Response) {
     try {
-      const book = await BookService.createBook(req.body);
+      const book: Book = await BookService.createBook(req.body);
       res.json({
         success: true,
         book: book,
@@ -39,7 +40,7 @@ export class BookController {
 
   static async deleteBook(req: Request, res: Response) {
     try {
-      const id = parseInt(req.params.id);
+      const id: number = parseInt(req.params.id);
       const book = await BookService.getBookById(id);
       if (!book) {
         return res.status(400).json({
@@ -62,15 +63,15 @@ export class BookController {
 
   static async updateBook(req: Request, res: Response) {
     try {
-      const id = parseInt(req.params.id);
-      const book = await BookService.getBookById(id);
+      const id: number = parseInt(req.params.id);
+      const book: Book = await BookService.getBookById(id);
       if (!book) {
         return res.status(400).json({
           success: false,
           message: "Book doesn't exists",
         });
       }
-      const updatedBook = await BookService.updateBook(id, req.body);
+      const updatedBook: Book = await BookService.updateBook(id, req.body);
       res.json({
         success: true,
         data: {
