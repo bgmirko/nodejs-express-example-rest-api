@@ -11,7 +11,6 @@ export interface TokenUserPayload {
   role: RoleType;
 }
 
-
 export interface TokenData {
     uuid: string;
     role: RoleType;

@@ -2,7 +2,7 @@ import jwt from 'jsonwebtoken';
 import { TokenUserPayload } from './types';
 
 export const generateAccessToken = (user: TokenUserPayload) => {
-    return jwt.sign(user, process.env.ACCESS_TOKEN_SECRET, { expiresIn: '12h' }); // TODO change to 15m
+    return jwt.sign(user, process.env.ACCESS_TOKEN_SECRET, { expiresIn: '1h' }); // TODO change to 10m
 }
 
 export const generateRefreshAccessToken = (user: TokenUserPayload) => {

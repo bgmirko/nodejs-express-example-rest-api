@@ -6,8 +6,9 @@ import {
   generateAccessToken,
   generateRefreshAccessToken,
 } from "../utils/jwtToken";
-import { TokenUserPayload, TokenData } from "../utils/types";
+import { TokenUserPayload, TokenData, RequestCustom } from "../utils/types";
 import jwt from "jsonwebtoken";
+import { RoleType } from "../utils/enums";
 
 export class UserController {
   static async getUsers(req: Request, res: Response) {
@@ -45,7 +46,7 @@ export class UserController {
     }
   }
 
-  static async deleteUser(req: Request, res: Response) {
+  static async softDeleteUser(req: Request, res: Response) {
     try {
       const id: string = req.params.id;
       const user: User = await UserService.getUserById(id);
@@ -55,7 +56,13 @@ export class UserController {
           message: "User doesn't exists",
         });
       }
-      await UserService.deleteUser(id);
+      if (user.role === RoleType.Admin && user.active) {
+        return res.status(400).json({
+          success: false,
+          message: "You are not able to delete user with Admin role which is active",
+        });
+      }
+      await UserService.softDeleteUser(id);
       res.json({
         success: true,
         message: "User is deleted successfully",
@@ -94,7 +101,26 @@ export class UserController {
     }
   }
 
-  static async loginUser(req, res) {
+  static async deactivateUser(req: RequestCustom, res: Response) {
+    try {
+      const userData: TokenUserPayload = req.user;
+      const updatedUser: User = await UserService.deactivateUser(userData.uuid);
+      res.json({
+        success: true,
+        data: {
+          user: updatedUser,
+        },
+        message: "User is deactivated successfully",
+      });
+    } catch (error) {
+      res.status(400).json({
+        success: false,
+        message: error.message,
+      });
+    }
+  }
+
+  static async loginUser(req: Request, res: Response) {
     try {
       const password: string = req.body.password;
       const username: string = req.body.username;
@@ -105,6 +131,13 @@ export class UserController {
         return res.status(400).json({
           success: false,
           message: "Username or password are not correct",
+        });
+      }
+
+      if (!user.active) {
+        return res.status(400).json({
+          success: false,
+          message: "Your account is deactivated",
         });
       }
 
@@ -135,7 +168,7 @@ export class UserController {
     }
   }
 
-  static async refreshToken(req, res) {
+  static async refreshToken(req: Request, res: Response) {
     try {
       if (!req.body.refreshToken) {
         throw new Error("refreshToken missing");
@@ -153,6 +186,8 @@ export class UserController {
             uuid: userTokenData.uuid,
             role: userTokenData.role
           }
+
+          // TODO refresh token should be stored in database
 
           // if refresh token is valid create new token and refresh token
           const accessToken: string = generateAccessToken(tokenUserPayload);
