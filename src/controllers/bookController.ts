@@ -1,7 +1,9 @@
 import { BookService } from "../services/bookService";
 import type { Request, Response } from "express";
-import { Book } from '../database/modelsTypes';
-
+import { Book } from "../database/modelsTypes";
+import { TokenUserPayload } from "../utils/types";
+import { RequestCustom } from "../utils/types";
+import { RoleType } from "../utils/enums";
 export class BookController {
   static async getBooks(req: Request, res: Response) {
     try {
@@ -38,14 +40,21 @@ export class BookController {
     }
   }
 
-  static async deleteBook(req: Request, res: Response) {
+  static async deleteBook(req: RequestCustom, res: Response) {
     try {
       const id: number = parseInt(req.params.id);
-      const book = await BookService.getBookById(id);
+      const book: Book = await BookService.getBookById(id);
       if (!book) {
         return res.status(400).json({
           success: false,
           message: "Book doesn't exists",
+        });
+      }
+      const userData: TokenUserPayload = req.user;
+      if (userData.role === RoleType.Author && book.userUid !== userData.uuid) {
+        return res.status(400).json({
+          success: false,
+          message: "Author Role can delete only own books",
         });
       }
       await BookService.deleteBook(id);
@@ -61,7 +70,7 @@ export class BookController {
     }
   }
 
-  static async updateBook(req: Request, res: Response) {
+  static async updateBook(req: RequestCustom, res: Response) {
     try {
       const id: number = parseInt(req.params.id);
       const book: Book = await BookService.getBookById(id);
@@ -69,6 +78,13 @@ export class BookController {
         return res.status(400).json({
           success: false,
           message: "Book doesn't exists",
+        });
+      }
+      const userData: TokenUserPayload = req.user;
+      if (userData.role === RoleType.Author && book.userUid !== userData.uuid) {
+        return res.status(400).json({
+          success: false,
+          message: "Author Role can delete only own books",
         });
       }
       const updatedBook: Book = await BookService.updateBook(id, req.body);
