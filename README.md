@@ -19,3 +19,14 @@ I made this documentation to have description of all routs and payloads and it i
 To go deep in creation of full documentation is time consuming. Some routes requires/are gard with Auth header and require user login to use those routes. 
 
 The best way to test solution is to use Postman collection and environment from src/utils/postman folder. In those routes is included Auth header and this tool is out of the books for testing.
+
+
+
+# Run Jest test
+note: For Jest tests docker-compose will create separate database
+
+1. Project should be in running state: "docker-compose up -d --build"
+
+2. Install jest in root of project with command: "yarn add jest"
+
+3. To run tests, in root of project run: "yarn run test"

@@ -39,7 +39,7 @@ export class UserService {
   /*
    * Update User data
    */
-  static async updateUser(id: string, userData: User): Promise<User> {
+  static async updateUser(id: string, userData: any): Promise<User> {
     await db.User.update(
       {
         ...userData,

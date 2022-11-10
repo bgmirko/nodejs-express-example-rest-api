@@ -9,5 +9,13 @@ module.exports = {
     "dialect": "postgres",
     "seederStorage": "sequelize",
     "seederStorageTableName": "SequelizeData",
-  }
+  },
+  "test": {
+    "username": process.env.DB_USER,
+    "password": process.env.DB_PASSWORD,
+    "database": process.env.TEST_DATABASE,
+    "host": process.env.TEST_DB_HOST,
+    "port": process.env.TEST_DB_PORT,
+    "dialect": "postgres"
+  },
 }
