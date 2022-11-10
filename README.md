@@ -6,7 +6,7 @@
 
 3. Change directory: "cd src/database"
 
-Database tables will be created pragmatically (in step 1) it is not necessary to have migrations
+Database tables will be created programmatically (in step 1) it is not necessary to have migrations
 
 4. To fill database tables with data, in shell run seeders: "npx sequelize-cli db:seed:all"
 
