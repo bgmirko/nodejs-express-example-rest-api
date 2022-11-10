@@ -1,5 +1,5 @@
-import { Model } from "sequelize";
-import { RoleType } from "../../utils/enums";
+import {Model} from 'sequelize';
+import {RoleType} from '../../utils/enums';
 
 export interface UserAttributes {
   uuid: string;
@@ -8,7 +8,7 @@ export interface UserAttributes {
   username: string;
   password: string;
   email: string;
-  role: RoleType
+  role: RoleType;
   active: boolean;
 }
 
@@ -29,10 +29,10 @@ module.exports = (sequelize, DataTypes) => {
     active: boolean;
 
     static associate(models) {
-        User.hasMany(models.Book, {
-          foreignKey: "userUid", 
-          onDelete: 'cascade'
-        });
+      User.hasMany(models.Book, {
+        foreignKey: 'userUid',
+        onDelete: 'cascade',
+      });
     }
   }
   User.init(
@@ -51,7 +51,7 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
       },
       username: {
-        unique:true,
+        unique: true,
         type: DataTypes.STRING,
         allowNull: false,
       },
@@ -63,13 +63,13 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING,
         allowNull: false,
         validate: {
-          isEmail: true
-        }
+          isEmail: true,
+        },
       },
       role: {
         type: DataTypes.ENUM,
         values: Object.values(RoleType),
-        allowNull: false
+        allowNull: false,
       },
       active: {
         type: DataTypes.BOOLEAN,
@@ -78,9 +78,9 @@ module.exports = (sequelize, DataTypes) => {
     },
     {
       sequelize,
-      modelName: "User",
+      modelName: 'User',
       paranoid: true,
-    }
+    },
   );
   return User;
 };

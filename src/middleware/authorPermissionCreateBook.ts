@@ -1,19 +1,19 @@
-import type { Response, NextFunction } from "express";
-import { RequestCustom } from "../utils/types";
-import { TokenUserPayload } from "../utils/types";
-import { RoleType } from "../utils/enums";
+import type {Response, NextFunction} from 'express';
+import {RequestCustom} from '../utils/types';
+import {TokenUserPayload} from '../utils/types';
+import {RoleType} from '../utils/enums';
 
 export const authorPermissionCreateBook = async (
   req: RequestCustom,
   res: Response,
-  next: NextFunction
+  next: NextFunction,
 ) => {
   const userData: TokenUserPayload = req.user;
 
   if (!userData) {
     return res.json({
-        success: false,
-        message: "You must login",
+      success: false,
+      message: 'You must login',
     });
   }
 
@@ -23,7 +23,7 @@ export const authorPermissionCreateBook = async (
     } else {
       return res.json({
         success: false,
-        message: "Author can add only own books",
+        message: 'Author can add only own books',
       });
     }
   } else {

@@ -1,26 +1,26 @@
-import { UserService } from "../services/userService";
-import type { Request, Response } from "express";
-import { User } from "../database/modelsTypes";
-import bcrypt from "bcryptjs";
+import {UserService} from '../services/userService';
+import type {Request, Response} from 'express';
+import {User} from '../database/modelsTypes';
+import bcrypt from 'bcryptjs';
 import {
   generateAccessToken,
   generateRefreshAccessToken,
-} from "../utils/jwtToken";
-import { TokenUserPayload, TokenData, RequestCustom } from "../utils/types";
-import jwt from "jsonwebtoken";
-import { RoleType } from "../utils/enums";
+} from '../utils/jwtToken';
+import {TokenUserPayload, TokenData, RequestCustom} from '../utils/types';
+import jwt from 'jsonwebtoken';
+import {RoleType} from '../utils/enums';
 
 export class UserController {
   static async getUsers(req: Request, res: Response) {
     try {
-      const { rows, count } = await UserService.getUsers(req.query);
+      const {rows, count} = await UserService.getUsers(req.query);
       res.json({
         success: true,
         data: {
           users: rows,
           totalCount: count,
         },
-        message: "List of users fetch successfully",
+        message: 'List of users fetch successfully',
       });
     } catch (error) {
       res.status(400).json({
@@ -36,7 +36,7 @@ export class UserController {
       res.json({
         success: true,
         user: user,
-        message: "User is created successfully",
+        message: 'User is created successfully',
       });
     } catch (error) {
       res.status(400).json({
@@ -59,13 +59,14 @@ export class UserController {
       if (user.role === RoleType.Admin && user.active) {
         return res.status(400).json({
           success: false,
-          message: "You are not able to delete user with Admin role which is active",
+          message:
+            'You are not able to delete user with Admin role which is active',
         });
       }
       await UserService.softDeleteUser(id);
       res.json({
         success: true,
-        message: "User is deleted successfully",
+        message: 'User is deleted successfully',
       });
     } catch (error) {
       res.status(400).json({
@@ -91,7 +92,7 @@ export class UserController {
         data: {
           user: updatedUser,
         },
-        message: "User is updated successfully",
+        message: 'User is updated successfully',
       });
     } catch (error) {
       res.status(400).json({
@@ -110,7 +111,7 @@ export class UserController {
         data: {
           user: updatedUser,
         },
-        message: "User is deactivated successfully",
+        message: 'User is deactivated successfully',
       });
     } catch (error) {
       res.status(400).json({
@@ -130,14 +131,14 @@ export class UserController {
       if (user == null) {
         return res.status(400).json({
           success: false,
-          message: "Username or password are not correct",
+          message: 'Username or password are not correct',
         });
       }
 
       if (!user.active) {
         return res.status(400).json({
           success: false,
-          message: "Your account is deactivated",
+          message: 'Your account is deactivated',
         });
       }
 
@@ -152,12 +153,12 @@ export class UserController {
           success: true,
           accessToken,
           refreshToken,
-          message: "User login successfully",
+          message: 'User login successfully',
         });
       } else {
         res.status(400).json({
           success: false,
-          message: "Username or password are not correct",
+          message: 'Username or password are not correct',
         });
       }
     } catch (error) {
@@ -171,7 +172,7 @@ export class UserController {
   static async refreshToken(req: Request, res: Response) {
     try {
       if (!req.body.refreshToken) {
-        throw new Error("refreshToken missing");
+        throw new Error('refreshToken missing');
       }
 
       jwt.verify(
@@ -179,26 +180,27 @@ export class UserController {
         process.env.REFRESH_TOKEN_SECRET,
         (err: any, userTokenData: TokenData) => {
           if (err) {
-            return res.sendStatus(401)
+            return res.sendStatus(401);
           }
 
           const tokenUserPayload: TokenUserPayload = {
             uuid: userTokenData.uuid,
-            role: userTokenData.role
-          }
+            role: userTokenData.role,
+          };
 
           // TODO refresh token should be stored in database
 
           // if refresh token is valid create new token and refresh token
           const accessToken: string = generateAccessToken(tokenUserPayload);
-          const refreshToken: string = generateRefreshAccessToken(tokenUserPayload);
+          const refreshToken: string =
+            generateRefreshAccessToken(tokenUserPayload);
           res.json({
             success: true,
             accessToken,
             refreshToken,
-            message: "Token refreshed successfully",
+            message: 'Token refreshed successfully',
           });
-        }
+        },
       );
     } catch (error) {
       return res.status(400).json({

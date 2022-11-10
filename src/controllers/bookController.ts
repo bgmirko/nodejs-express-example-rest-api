@@ -1,20 +1,20 @@
-import { BookService } from "../services/bookService";
-import type { Request, Response } from "express";
-import { Book } from "../database/modelsTypes";
-import { TokenUserPayload } from "../utils/types";
-import { RequestCustom } from "../utils/types";
-import { RoleType } from "../utils/enums";
+import {BookService} from '../services/bookService';
+import type {Request, Response} from 'express';
+import {Book} from '../database/modelsTypes';
+import {TokenUserPayload} from '../utils/types';
+import {RequestCustom} from '../utils/types';
+import {RoleType} from '../utils/enums';
 export class BookController {
   static async getBooks(req: Request, res: Response) {
     try {
-      const { rows, count } = await BookService.getBooks(req.query);
+      const {rows, count} = await BookService.getBooks(req.query);
       res.json({
         success: true,
         data: {
           books: rows,
           totalCount: count,
         },
-        message: "List of books fetch successfully",
+        message: 'List of books fetch successfully',
       });
     } catch (error) {
       res.status(400).json({
@@ -30,7 +30,7 @@ export class BookController {
       res.json({
         success: true,
         book: book,
-        message: "Book is created successfully",
+        message: 'Book is created successfully',
       });
     } catch (error) {
       res.status(400).json({
@@ -54,13 +54,13 @@ export class BookController {
       if (userData.role === RoleType.Author && book.userUid !== userData.uuid) {
         return res.status(400).json({
           success: false,
-          message: "Author Role can delete only own books",
+          message: 'Author Role can delete only own books',
         });
       }
       await BookService.deleteBook(id);
       res.json({
         success: true,
-        message: "Book is deleted successfully",
+        message: 'Book is deleted successfully',
       });
     } catch (error) {
       res.status(400).json({
@@ -84,7 +84,7 @@ export class BookController {
       if (userData.role === RoleType.Author && book.userUid !== userData.uuid) {
         return res.status(400).json({
           success: false,
-          message: "Author Role can delete only own books",
+          message: 'Author Role can delete only own books',
         });
       }
       const updatedBook: Book = await BookService.updateBook(id, req.body);
@@ -93,7 +93,7 @@ export class BookController {
         data: {
           book: updatedBook,
         },
-        message: "Book is updated successfully",
+        message: 'Book is updated successfully',
       });
     } catch (error) {
       res.status(400).json({

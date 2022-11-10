@@ -1,5 +1,5 @@
-import { Model } from "sequelize";
-import { RoleType } from "../../utils/enums";
+import {Model} from 'sequelize';
+import {RoleType} from '../../utils/enums';
 
 export interface BookAttributes {
   id: number;
@@ -22,7 +22,7 @@ module.exports = (sequelize, DataTypes) => {
     numberOfPages: number;
 
     static associate(models) {
-      Book.belongsTo(models.User, { foreignKey: "userUid", as: "Books" });
+      Book.belongsTo(models.User, {foreignKey: 'userUid', as: 'Books'});
     }
   }
   Book.init(
@@ -37,8 +37,8 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.UUID,
         allowNull: false,
         references: {
-          model: "Users",
-          key: "uuid",
+          model: 'Users',
+          key: 'uuid',
         },
       },
       title: {
@@ -64,8 +64,8 @@ module.exports = (sequelize, DataTypes) => {
     },
     {
       sequelize,
-      modelName: "Book",
-    }
-  ); 
+      modelName: 'Book',
+    },
+  );
   return Book;
 };

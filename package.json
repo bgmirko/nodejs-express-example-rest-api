@@ -9,7 +9,11 @@
     "build": "rm -rf dist && tsc",
     "dev": "tsnd --respawn src/server.ts",
     "start": "node dist/server.js",
-    "test": "jest --runInBand"
+    "test": "jest --runInBand",
+    "lint:fix": "npm run lint -- --quiet --fix",
+    "lint": "eslint -c .eslintrc.js \"./src/**/*.+(js|ts)\"",
+    "prettier": "prettier --write \"**/*.+(json|yml|yaml|ts|md|mdx)\"",
+    "prettier:check": "prettier --check \"**/*.+(json|yml|yaml|ts|md|mdx)\""
   },
   "dependencies": {
     "@types/jest": "^29.2.2",
@@ -28,7 +32,13 @@
   },
   "devDependencies": {
     "@types/express": "^4.17.14",
+    "@typescript-eslint/eslint-plugin": "^5.42.1",
+    "@typescript-eslint/parser": "^5.42.1",
     "dotenv": "^16.0.3",
+    "eslint": "^8.27.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-mocha": "^10.1.0",
+    "prettier": "^2.7.1",
     "sequelize-cli": "^6.5.2",
     "ts-node": "^10.9.1",
     "ts-node-dev": "^2.0.0",
