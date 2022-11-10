@@ -3,6 +3,7 @@ import express, { Request, Response, NextFunction } from "express";
 import db from "./database/models";
 import { userRoutes } from './routes/userRoutes';
 import { bookRoutes } from './routes/bookRoutes';
+import swaggerDocs from "./utils/swagger";
 
 const PORT = process.env.PORT ?? 3000;
 
@@ -29,4 +30,5 @@ app.listen(PORT, () => {
     db.sequelize.sync().then(() => {
         console.log(`App running on port ${PORT}`)
     });
+    swaggerDocs(app, 3000);
 })

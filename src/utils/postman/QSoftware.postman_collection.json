@@ -1,0 +1,1100 @@
+{
+	"info": {
+		"_postman_id": "61c561de-c22a-495b-a6b8-f66bee460567",
+		"name": "QSoftware",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "6887797"
+	},
+	"item": [
+		{
+			"name": "Books",
+			"item": [
+				{
+					"name": "Get Books",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/books",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"books"
+							],
+							"query": [
+								{
+									"key": "firstName",
+									"value": "",
+									"disabled": true
+								},
+								{
+									"key": "status",
+									"value": "true",
+									"disabled": true
+								},
+								{
+									"key": "lastName",
+									"value": "",
+									"disabled": true
+								},
+								{
+									"key": "startDate",
+									"value": "2022-10-01",
+									"disabled": true
+								},
+								{
+									"key": "endDate",
+									"value": "2022-12-01",
+									"disabled": true
+								},
+								{
+									"key": "limit",
+									"value": "2",
+									"disabled": true
+								},
+								{
+									"key": "cursor",
+									"value": "1",
+									"disabled": true
+								},
+								{
+									"key": "email",
+									"value": null,
+									"disabled": true
+								},
+								{
+									"key": "username",
+									"value": null,
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get Users",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/users",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"users"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "2746"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"aba-LTEhwN6OuhY7YmaU331oMyEs5Dw\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 15 Sep 2022 09:54:05 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"code\": 100,\n    \"success\": true,\n    \"data\": [\n        {\n            \"uuid\": \"956b086d-f22d-43a3-8966-77d412555c3e\",\n            \"phone\": \"+381642345987\",\n            \"diamonds\": 200,\n            \"spentDiamonds\": 1000,\n            \"deviceOS\": \"IOS\",\n            \"geolocation\": \"Beograd\",\n            \"banned\": false,\n            \"createdAt\": \"2022-09-15T08:51:53.497Z\",\n            \"updatedAt\": \"2022-09-15T08:51:53.497Z\"\n        },\n        {\n            \"uuid\": \"8b85d6f8-02ef-47d3-ab3c-f8074cbaf26e\",\n            \"phone\": \"+381653345987\",\n            \"diamonds\": 250,\n            \"spentDiamonds\": 0,\n            \"deviceOS\": \"Android\",\n            \"geolocation\": \"Novi Sad\",\n            \"banned\": false,\n            \"createdAt\": \"2022-09-15T08:51:53.776Z\",\n            \"updatedAt\": \"2022-09-15T08:51:53.776Z\"\n        },\n        {\n            \"uuid\": \"622e10a6-a475-4439-bd53-1b6e93ab1981\",\n            \"phone\": \"+38161734592\",\n            \"diamonds\": 0,\n            \"spentDiamonds\": 550,\n            \"deviceOS\": \"IOS\",\n            \"geolocation\": \"Beograd\",\n            \"banned\": false,\n            \"createdAt\": \"2022-09-15T08:51:54.053Z\",\n            \"updatedAt\": \"2022-09-15T08:51:54.053Z\"\n        },\n        {\n            \"uuid\": \"cdc3fe43-a677-482a-8c7b-68f23bcbf729\",\n            \"phone\": \"+381693345584\",\n            \"diamonds\": 420,\n            \"spentDiamonds\": 7,\n            \"deviceOS\": \"Android\",\n            \"geolocation\": \"Novi Sad\",\n            \"banned\": false,\n            \"createdAt\": \"2022-09-15T08:51:54.330Z\",\n            \"updatedAt\": \"2022-09-15T08:51:54.330Z\"\n        },\n        {\n            \"uuid\": \"aeb81519-469f-4e3f-9922-e54d380246c0\",\n            \"phone\": \"+381646845987\",\n            \"diamonds\": 200,\n            \"spentDiamonds\": 1000,\n            \"deviceOS\": \"IOS\",\n            \"geolocation\": \"Beograd\",\n            \"banned\": false,\n            \"createdAt\": \"2022-09-15T08:51:54.605Z\",\n            \"updatedAt\": \"2022-09-15T08:51:54.605Z\"\n        },\n        {\n            \"uuid\": \"cf096740-e873-4307-bcae-b40726262ed0\",\n            \"phone\": \"+381653349387\",\n            \"diamonds\": 250,\n            \"spentDiamonds\": 0,\n            \"deviceOS\": \"Android\",\n            \"geolocation\": \"Subotica\",\n            \"banned\": false,\n            \"createdAt\": \"2022-09-15T08:51:54.879Z\",\n            \"updatedAt\": \"2022-09-15T08:51:54.879Z\"\n        },\n        {\n            \"uuid\": \"f296af62-6c76-481c-901f-cdd92ce8e2a6\",\n            \"phone\": \"+38161734587\",\n            \"diamonds\": 0,\n            \"spentDiamonds\": 550,\n            \"deviceOS\": \"IOS\",\n            \"geolocation\": \"Nis\",\n            \"banned\": false,\n            \"createdAt\": \"2022-09-15T08:51:55.150Z\",\n            \"updatedAt\": \"2022-09-15T08:51:55.150Z\"\n        },\n        {\n            \"uuid\": \"96fa7931-608b-4dce-aeb0-a7825b66b2b2\",\n            \"phone\": \"+381642354897\",\n            \"diamonds\": 3100,\n            \"spentDiamonds\": 1560,\n            \"deviceOS\": \"Android\",\n            \"geolocation\": \"Kragujevac\",\n            \"banned\": false,\n            \"createdAt\": \"2022-09-15T08:51:55.422Z\",\n            \"updatedAt\": \"2022-09-15T08:51:55.422Z\"\n        },\n        {\n            \"uuid\": \"e0cf3ff1-8e4f-475d-ba34-73503ea2738e\",\n            \"phone\": \"+381653349333\",\n            \"diamonds\": 250,\n            \"spentDiamonds\": 0,\n            \"deviceOS\": \"Android\",\n            \"geolocation\": \"Novi Pazar\",\n            \"banned\": false,\n            \"createdAt\": \"2022-09-15T08:51:55.696Z\",\n            \"updatedAt\": \"2022-09-15T08:51:55.696Z\"\n        },\n        {\n            \"uuid\": \"0215cac7-0721-4b5d-8ae3-dde430cccc6b\",\n            \"phone\": \"+381647345873\",\n            \"diamonds\": 40,\n            \"spentDiamonds\": 1500,\n            \"deviceOS\": \"IOS\",\n            \"geolocation\": \"Nis\",\n            \"banned\": false,\n            \"createdAt\": \"2022-09-15T08:51:55.969Z\",\n            \"updatedAt\": \"2022-09-15T08:51:55.969Z\"\n        },\n        {\n            \"uuid\": \"a2c7732b-91ac-4c53-9257-806b642d562a\",\n            \"phone\": \"+381642354111\",\n            \"diamonds\": 270,\n            \"spentDiamonds\": 70,\n            \"deviceOS\": \"Android\",\n            \"geolocation\": \"Beograd\",\n            \"banned\": false,\n            \"createdAt\": \"2022-09-15T08:51:56.240Z\",\n            \"updatedAt\": \"2022-09-15T08:51:56.240Z\"\n        }\n    ],\n    \"message\": \"List of Users fetch successfully\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Update Book",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"userUid\": \"956b086d-f22d-43a3-8966-77d412555cc6\",\n  \"title\": \"New Title\",\n  \"publisher\": \"New Publisher\",\n  \"description\": \"New description\",\n  \"genre\": \"new genre\",\n  \"numberOfPages\": 200\n}"
+						},
+						"url": {
+							"raw": "http://localhost:3000/books/update/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"books",
+								"update",
+								"1"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Update User",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"phone\": \"+381641111111\",\n    \"password\": \"pera444\",\n    \"deviceOS\": \"IOS\"\n}"
+								},
+								"url": {
+									"raw": "http://localhost:3000/users/update/a2c7732b-91ac-4c53-9257-806b642d562a",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"users",
+										"update",
+										"a2c7732b-91ac-4c53-9257-806b642d562a"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "321"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"141-yx6EyXvg2i5T2qk1xjOxn4hyGNU\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 16 Sep 2022 11:31:26 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"code\": 100,\n    \"success\": true,\n    \"data\": {\n        \"user\": {\n            \"uuid\": \"a2c7732b-91ac-4c53-9257-806b642d562a\",\n            \"phone\": \"+381641111111\",\n            \"diamonds\": 270,\n            \"spentDiamonds\": 70,\n            \"deviceOS\": \"IOS\",\n            \"geolocation\": \"Beograd\",\n            \"banned\": false,\n            \"createdAt\": \"2022-09-16T11:07:52.456Z\",\n            \"updatedAt\": \"2022-09-16T11:31:26.100Z\"\n        }\n    },\n    \"message\": \"User updated successfully\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Create Book",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"userUid\": \"8b85d6f8-02ef-47d3-ab3c-f8074cbaf26e\",\n  \"title\": \"New Title\",\n  \"publisher\": \"New Publisher\",\n  \"description\": \"New description\",\n  \"genre\": \"new genre\",\n  \"numberOfPages\": 200\n}"
+						},
+						"url": {
+							"raw": "http://localhost:3000/books/new",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"books",
+								"new"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Create User",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"uuid\": \"a2c509db-8372-4e4c-a89c-1e5afc214b05\",\n    \"phone\": \"+381641268498\",\n    \"password\": \"test123\",\n    \"deviceOS\": \"Android\"\n}"
+								},
+								"url": {
+									"raw": "http://localhost:3000/users/new",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"users",
+										"new"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "329"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"149-+uVBsN1wmA3EjLmRDx0f41UeWrs\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 15 Sep 2022 11:21:52 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"code\": 100,\n    \"success\": true,\n    \"data\": {\n        \"uuid\": \"80f7f578-4bf5-44d9-99ab-742fd06d0f48\",\n        \"diamonds\": 0,\n        \"spentDiamonds\": 0,\n        \"banned\": false,\n        \"phone\": \"+381641268498\",\n        \"password\": \"test123\",\n        \"deviceOS\": \"Android\",\n        \"updatedAt\": \"2022-09-15T11:21:52.925Z\",\n        \"createdAt\": \"2022-09-15T11:21:52.925Z\",\n        \"geolocation\": null\n    },\n    \"message\": \"User created successfully\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Delete Book",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/books/delete/10",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"books",
+								"delete",
+								"10"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Delete Users",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/users/delete/63b93013-f339-4950-84e1-bd2af0634453",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"users",
+										"delete",
+										"63b93013-f339-4950-84e1-bd2af0634453"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "65"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"41-PG+WwyBzitquiXZgqEPfb7QkQlY\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 15 Sep 2022 14:02:08 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"code\": 100,\n    \"success\": true,\n    \"message\": \"User deleted successfully\"\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "Get Users",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/books",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"books"
+							],
+							"query": [
+								{
+									"key": "firstName",
+									"value": "",
+									"disabled": true
+								},
+								{
+									"key": "status",
+									"value": "true",
+									"disabled": true
+								},
+								{
+									"key": "lastName",
+									"value": "",
+									"disabled": true
+								},
+								{
+									"key": "startDate",
+									"value": "2022-10-01",
+									"disabled": true
+								},
+								{
+									"key": "endDate",
+									"value": "2022-12-01",
+									"disabled": true
+								},
+								{
+									"key": "limit",
+									"value": "2",
+									"disabled": true
+								},
+								{
+									"key": "cursor",
+									"value": "1",
+									"disabled": true
+								},
+								{
+									"key": "email",
+									"value": null,
+									"disabled": true
+								},
+								{
+									"key": "username",
+									"value": null,
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get Users",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/users",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"users"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "2746"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"aba-LTEhwN6OuhY7YmaU331oMyEs5Dw\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 15 Sep 2022 09:54:05 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"code\": 100,\n    \"success\": true,\n    \"data\": [\n        {\n            \"uuid\": \"956b086d-f22d-43a3-8966-77d412555c3e\",\n            \"phone\": \"+381642345987\",\n            \"diamonds\": 200,\n            \"spentDiamonds\": 1000,\n            \"deviceOS\": \"IOS\",\n            \"geolocation\": \"Beograd\",\n            \"banned\": false,\n            \"createdAt\": \"2022-09-15T08:51:53.497Z\",\n            \"updatedAt\": \"2022-09-15T08:51:53.497Z\"\n        },\n        {\n            \"uuid\": \"8b85d6f8-02ef-47d3-ab3c-f8074cbaf26e\",\n            \"phone\": \"+381653345987\",\n            \"diamonds\": 250,\n            \"spentDiamonds\": 0,\n            \"deviceOS\": \"Android\",\n            \"geolocation\": \"Novi Sad\",\n            \"banned\": false,\n            \"createdAt\": \"2022-09-15T08:51:53.776Z\",\n            \"updatedAt\": \"2022-09-15T08:51:53.776Z\"\n        },\n        {\n            \"uuid\": \"622e10a6-a475-4439-bd53-1b6e93ab1981\",\n            \"phone\": \"+38161734592\",\n            \"diamonds\": 0,\n            \"spentDiamonds\": 550,\n            \"deviceOS\": \"IOS\",\n            \"geolocation\": \"Beograd\",\n            \"banned\": false,\n            \"createdAt\": \"2022-09-15T08:51:54.053Z\",\n            \"updatedAt\": \"2022-09-15T08:51:54.053Z\"\n        },\n        {\n            \"uuid\": \"cdc3fe43-a677-482a-8c7b-68f23bcbf729\",\n            \"phone\": \"+381693345584\",\n            \"diamonds\": 420,\n            \"spentDiamonds\": 7,\n            \"deviceOS\": \"Android\",\n            \"geolocation\": \"Novi Sad\",\n            \"banned\": false,\n            \"createdAt\": \"2022-09-15T08:51:54.330Z\",\n            \"updatedAt\": \"2022-09-15T08:51:54.330Z\"\n        },\n        {\n            \"uuid\": \"aeb81519-469f-4e3f-9922-e54d380246c0\",\n            \"phone\": \"+381646845987\",\n            \"diamonds\": 200,\n            \"spentDiamonds\": 1000,\n            \"deviceOS\": \"IOS\",\n            \"geolocation\": \"Beograd\",\n            \"banned\": false,\n            \"createdAt\": \"2022-09-15T08:51:54.605Z\",\n            \"updatedAt\": \"2022-09-15T08:51:54.605Z\"\n        },\n        {\n            \"uuid\": \"cf096740-e873-4307-bcae-b40726262ed0\",\n            \"phone\": \"+381653349387\",\n            \"diamonds\": 250,\n            \"spentDiamonds\": 0,\n            \"deviceOS\": \"Android\",\n            \"geolocation\": \"Subotica\",\n            \"banned\": false,\n            \"createdAt\": \"2022-09-15T08:51:54.879Z\",\n            \"updatedAt\": \"2022-09-15T08:51:54.879Z\"\n        },\n        {\n            \"uuid\": \"f296af62-6c76-481c-901f-cdd92ce8e2a6\",\n            \"phone\": \"+38161734587\",\n            \"diamonds\": 0,\n            \"spentDiamonds\": 550,\n            \"deviceOS\": \"IOS\",\n            \"geolocation\": \"Nis\",\n            \"banned\": false,\n            \"createdAt\": \"2022-09-15T08:51:55.150Z\",\n            \"updatedAt\": \"2022-09-15T08:51:55.150Z\"\n        },\n        {\n            \"uuid\": \"96fa7931-608b-4dce-aeb0-a7825b66b2b2\",\n            \"phone\": \"+381642354897\",\n            \"diamonds\": 3100,\n            \"spentDiamonds\": 1560,\n            \"deviceOS\": \"Android\",\n            \"geolocation\": \"Kragujevac\",\n            \"banned\": false,\n            \"createdAt\": \"2022-09-15T08:51:55.422Z\",\n            \"updatedAt\": \"2022-09-15T08:51:55.422Z\"\n        },\n        {\n            \"uuid\": \"e0cf3ff1-8e4f-475d-ba34-73503ea2738e\",\n            \"phone\": \"+381653349333\",\n            \"diamonds\": 250,\n            \"spentDiamonds\": 0,\n            \"deviceOS\": \"Android\",\n            \"geolocation\": \"Novi Pazar\",\n            \"banned\": false,\n            \"createdAt\": \"2022-09-15T08:51:55.696Z\",\n            \"updatedAt\": \"2022-09-15T08:51:55.696Z\"\n        },\n        {\n            \"uuid\": \"0215cac7-0721-4b5d-8ae3-dde430cccc6b\",\n            \"phone\": \"+381647345873\",\n            \"diamonds\": 40,\n            \"spentDiamonds\": 1500,\n            \"deviceOS\": \"IOS\",\n            \"geolocation\": \"Nis\",\n            \"banned\": false,\n            \"createdAt\": \"2022-09-15T08:51:55.969Z\",\n            \"updatedAt\": \"2022-09-15T08:51:55.969Z\"\n        },\n        {\n            \"uuid\": \"a2c7732b-91ac-4c53-9257-806b642d562a\",\n            \"phone\": \"+381642354111\",\n            \"diamonds\": 270,\n            \"spentDiamonds\": 70,\n            \"deviceOS\": \"Android\",\n            \"geolocation\": \"Beograd\",\n            \"banned\": false,\n            \"createdAt\": \"2022-09-15T08:51:56.240Z\",\n            \"updatedAt\": \"2022-09-15T08:51:56.240Z\"\n        }\n    ],\n    \"message\": \"List of Users fetch successfully\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Update User",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"firstName\": \"New name\",\n  \"lastName\": \"New lastName\",\n  \"username\": \"New username\",\n  \"password\": \"test123\",\n  \"email\": \"new@gmail.com\",\n  \"role\": \"Admin\",\n  \"active\": true\n}"
+						},
+						"url": {
+							"raw": "http://localhost:3000/users/update/8b85d6f8-02ef-47d3-ab3c-f8074cbaf2d8",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"users",
+								"update",
+								"8b85d6f8-02ef-47d3-ab3c-f8074cbaf2d8"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Update User",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"phone\": \"+381641111111\",\n    \"password\": \"pera444\",\n    \"deviceOS\": \"IOS\"\n}"
+								},
+								"url": {
+									"raw": "http://localhost:3000/users/update/a2c7732b-91ac-4c53-9257-806b642d562a",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"users",
+										"update",
+										"a2c7732b-91ac-4c53-9257-806b642d562a"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "321"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"141-yx6EyXvg2i5T2qk1xjOxn4hyGNU\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 16 Sep 2022 11:31:26 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"code\": 100,\n    \"success\": true,\n    \"data\": {\n        \"user\": {\n            \"uuid\": \"a2c7732b-91ac-4c53-9257-806b642d562a\",\n            \"phone\": \"+381641111111\",\n            \"diamonds\": 270,\n            \"spentDiamonds\": 70,\n            \"deviceOS\": \"IOS\",\n            \"geolocation\": \"Beograd\",\n            \"banned\": false,\n            \"createdAt\": \"2022-09-16T11:07:52.456Z\",\n            \"updatedAt\": \"2022-09-16T11:31:26.100Z\"\n        }\n    },\n    \"message\": \"User updated successfully\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Deactivate user",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:3000/users/deactivate",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"users",
+								"deactivate"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Update User",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"phone\": \"+381641111111\",\n    \"password\": \"pera444\",\n    \"deviceOS\": \"IOS\"\n}"
+								},
+								"url": {
+									"raw": "http://localhost:3000/users/update/a2c7732b-91ac-4c53-9257-806b642d562a",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"users",
+										"update",
+										"a2c7732b-91ac-4c53-9257-806b642d562a"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "321"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"141-yx6EyXvg2i5T2qk1xjOxn4hyGNU\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 16 Sep 2022 11:31:26 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"code\": 100,\n    \"success\": true,\n    \"data\": {\n        \"user\": {\n            \"uuid\": \"a2c7732b-91ac-4c53-9257-806b642d562a\",\n            \"phone\": \"+381641111111\",\n            \"diamonds\": 270,\n            \"spentDiamonds\": 70,\n            \"deviceOS\": \"IOS\",\n            \"geolocation\": \"Beograd\",\n            \"banned\": false,\n            \"createdAt\": \"2022-09-16T11:07:52.456Z\",\n            \"updatedAt\": \"2022-09-16T11:31:26.100Z\"\n        }\n    },\n    \"message\": \"User updated successfully\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Create User",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"firstName\": \"New name\",\n  \"lastName\": \"New lastName\",\n  \"username\": \"New username\",\n  \"password\": \"test123\",\n  \"email\": \"new@gmail.com\",\n  \"role\": \"Admin\",\n  \"active\": true\n}"
+						},
+						"url": {
+							"raw": "http://localhost:3000/users/new",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"users",
+								"new"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Create User",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"uuid\": \"a2c509db-8372-4e4c-a89c-1e5afc214b05\",\n    \"phone\": \"+381641268498\",\n    \"password\": \"test123\",\n    \"deviceOS\": \"Android\"\n}"
+								},
+								"url": {
+									"raw": "http://localhost:3000/users/new",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"users",
+										"new"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "329"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"149-+uVBsN1wmA3EjLmRDx0f41UeWrs\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 15 Sep 2022 11:21:52 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"code\": 100,\n    \"success\": true,\n    \"data\": {\n        \"uuid\": \"80f7f578-4bf5-44d9-99ab-742fd06d0f48\",\n        \"diamonds\": 0,\n        \"spentDiamonds\": 0,\n        \"banned\": false,\n        \"phone\": \"+381641268498\",\n        \"password\": \"test123\",\n        \"deviceOS\": \"Android\",\n        \"updatedAt\": \"2022-09-15T11:21:52.925Z\",\n        \"createdAt\": \"2022-09-15T11:21:52.925Z\",\n        \"geolocation\": null\n    },\n    \"message\": \"User created successfully\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Delete User",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/users/delete/96098e9d-8617-4fa8-afc0-093c84643520",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"users",
+								"delete",
+								"96098e9d-8617-4fa8-afc0-093c84643520"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Delete Users",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/users/delete/63b93013-f339-4950-84e1-bd2af0634453",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"users",
+										"delete",
+										"63b93013-f339-4950-84e1-bd2af0634453"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "65"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"41-PG+WwyBzitquiXZgqEPfb7QkQlY\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 15 Sep 2022 14:02:08 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"code\": 100,\n    \"success\": true,\n    \"message\": \"User deleted successfully\"\n}"
+						}
+					]
+				},
+				{
+					"name": "login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
+									"console.log(jsonData);",
+									"pm.environment.set(\"token\", jsonData[\"accessToken\"]);",
+									"pm.environment.set(\"refreshToken\", jsonData[\"refreshToken\"]);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\": \"petar80\",\n    \"password\": \"test123\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:3000/users/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"users",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Refresh Token",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
+									"console.log(jsonData);",
+									"pm.environment.set(\"token\", jsonData[\"accessToken\"]);",
+									"pm.environment.set(\"refreshToken\", jsonData[\"refreshToken\"]);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"refreshToken\": \"{{refreshToken}}\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:3000/users/refresh_token",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"users",
+								"refresh_token"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
