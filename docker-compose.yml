@@ -7,6 +7,7 @@ services:
     env_file: .env
     depends_on:
       - db
+      - db-test
   db:
     image: postgres
     environment:
@@ -17,5 +18,16 @@ services:
       - 5432:5432
     volumes:
       - db-data-q-software:/var/lib/postgresql/data
+  db-test:
+    image: postgres
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: postgres-test
+    ports:
+      - 5430:5432
+    volumes:
+      - db-test-data-q-software:/var/lib/postgresql/data
 volumes:
   db-data-q-software:
+  db-test-data-q-software:
