@@ -12,21 +12,21 @@
  *        - role
  *        - email
  *      properties:
- *        firstName:  
+ *        firstName:
  *          type: string
  *          default: Milica
- *        lastName:  
+ *        lastName:
  *          type: string
  *          default: Jovanovic
- *        username:  
+ *        username:
  *          type: string
  *          default: milica24
- *        password:  
+ *        password:
  *          type: string
  *          default: test123
- *        role:  
+ *        role:
  *          type: string
- *          default: Admin 
+ *          default: Admin
  *        email:
  *          type: string
  *          default: milica.jo@example.com
@@ -36,21 +36,21 @@
  *    UpdateUserInput:
  *      type: object
  *      properties:
- *        firstName:  
+ *        firstName:
  *          type: string
  *          default: Milica
- *        lastName:  
+ *        lastName:
  *          type: string
  *          default: Jovanovic
- *        username:  
+ *        username:
  *          type: string
  *          default: milica24
- *        password:  
+ *        password:
  *          type: string
  *          default: test123
- *        role:  
+ *        role:
  *          type: string
- *          default: Admin 
+ *          default: Admin
  *        email:
  *          type: string
  *          default: milica.jo@example.com
@@ -60,16 +60,16 @@
  *    LoginUserInput:
  *      type: object
  *      properties:
- *        username:  
+ *        username:
  *          type: string
  *          default: petar80
- *        password:  
+ *        password:
  *          type: string
  *          default: test123
  *    RefreshTokenInput:
  *      type: object
  *      properties:
- *        refreshToken:  
+ *        refreshToken:
  *          type: string
  *          default: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1dWlkIjoiOTU2YjA4NmQtZjIyZC00M2EzLTg5NjYtNzdkNDEyNTU1YzNlIiwicm9sZSI6IkFkbWluIiwiaWF0IjoxNjY4MDcyNTgwLCJleHAiOjE2NzA2NjQ1ODB9.SvjLLf7EW3xQdQcltjxa3u645YhrKVi_FczCazcl4kI
  *    CreateUserResponse:
@@ -84,7 +84,7 @@
  *        username:
  *          type: string
  *        role:
- *          type: string  
+ *          type: string
  *        email:
  *          type: string
  *        active:
@@ -96,7 +96,7 @@
  *    LoginResponse:
  *      type: object
  *      properties:
- *        success: 
+ *        success:
  *          type: boolean
  *          default: true
  *        token:

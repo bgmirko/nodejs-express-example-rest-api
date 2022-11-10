@@ -11,42 +11,42 @@
  *        - genre
  *        - numberOfPages
  *      properties:
- *        userUid:  
+ *        userUid:
  *          type: string
  *          default: 956b086d-f22d-43a3-8966-77d412555cc6
- *        title:  
+ *        title:
  *          type: string
  *          default: Book title
- *        publisher:  
+ *        publisher:
  *          type: string
  *          default: Laguna
- *        description:  
+ *        description:
  *          type: string
  *          default: Book description
- *        genre:  
+ *        genre:
  *          type: string
- *          default: Classic 
+ *          default: Classic
  *        numberOfPages:
  *          type: number
  *          default: 320
-  *    UpdateBookInput:
+ *    UpdateBookInput:
  *      type: object
  *      properties:
- *        userUid:  
+ *        userUid:
  *          type: string
  *          default: 956b086d-f22d-43a3-8966-77d412555cc6
- *        title:  
+ *        title:
  *          type: string
  *          default: Book title
- *        publisher:  
+ *        publisher:
  *          type: string
  *          default: Laguna
- *        description:  
+ *        description:
  *          type: string
  *          default: Book description
- *        genre:  
+ *        genre:
  *          type: string
- *          default: Classic 
+ *          default: Classic
  *        numberOfPages:
  *          type: number
  *          default: 320

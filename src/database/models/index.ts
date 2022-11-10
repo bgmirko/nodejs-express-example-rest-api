@@ -1,28 +1,28 @@
-"use strict";
+'use strict';
 
-const fs = require("fs");
-const path = require("path");
-const Sequelize = require("sequelize");
+const fs = require('fs');
+const path = require('path');
+const Sequelize = require('sequelize');
 const basename = path.basename(__filename);
-const env = process.env.NODE_ENV || "development";
-const config = require(__dirname + "/../config/config.js")[env];
+const env = process.env.NODE_ENV || 'development';
+const config = require(__dirname + '/../config/config.js')[env];
 const db: any = {};
-const { Client } = require("pg");
+const {Client} = require('pg');
 
 let client;
-if (env == "localhost") {
+if (env == 'localhost') {
   client = new Client({
-    user: "postgres",
-    password: "password",
-    host: "db",
-    database: "postgres",
+    user: 'postgres',
+    password: 'password',
+    host: 'db',
+    database: 'postgres',
   });
-} else if (env == "test") {
+} else if (env == 'test') {
   client = new Client({
-    user: "postgres",
-    password: "password",
-    host: "localhost",
-    database: "postgres",
+    user: 'postgres',
+    password: 'password',
+    host: 'localhost',
+    database: 'postgres',
   });
 }
 
@@ -41,22 +41,22 @@ if (config.use_env_variable) {
     config.database,
     config.username,
     config.password,
-    config
+    config,
   );
 }
 
 fs.readdirSync(__dirname)
   .filter((file) => {
     return (
-      file.indexOf(".") !== 0 &&
+      file.indexOf('.') !== 0 &&
       file !== basename &&
-      (file.slice(-3) === ".js" || file.slice(-3) === ".ts")
+      (file.slice(-3) === '.js' || file.slice(-3) === '.ts')
     );
   })
   .forEach((file) => {
     const model = require(path.join(__dirname, file))(
       sequelize,
-      Sequelize.DataTypes
+      Sequelize.DataTypes,
     );
     db[model.name] = model;
   });
