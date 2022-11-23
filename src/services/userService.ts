@@ -1,25 +1,30 @@
-import db from '../database/models';
 import {User} from '../database/modelsTypes';
 
 export class UserService {
+  // TODO implement type
+  private db;
+
+  constructor(database){
+    this.db = database;
+  } 
   // fetch Users with pagination
-  static async getUsers(query): Promise<{count: number; rows: [User]}> {
-    return db.User.findAndCountAll({
+  async getUsers(query): Promise<{count: number; rows: [User]}> {
+    return this.db.User.findAndCountAll({
       attributes: {exclude: ['deleteAt']},
-      include: [{model: db.Book, as: 'Books'}],
+      include: [{model: this.db.Book, as: 'Books'}],
       offset: query?.cursor ?? 0,
       limit: query?.limit ?? 10,
     });
   }
 
-  static async createUser(user: User): Promise<User> {
-    return db.User.create({
+  async createUser(user: User): Promise<User> {
+    return this.db.User.create({
       ...user,
     });
   }
 
-  static async getUserById(id: string): Promise<User> {
-    return db.User.findOne({
+  async getUserById(id: string): Promise<User> {
+    return this.db.User.findOne({
       where: {
         uuid: id,
       },
@@ -28,8 +33,8 @@ export class UserService {
     });
   }
 
-  static async softDeleteUser(id: string): Promise<boolean> {
-    return db.User.destroy({
+  async softDeleteUser(id: string): Promise<boolean> {
+    return this.db.User.destroy({
       where: {
         uuid: id,
       },
@@ -39,8 +44,8 @@ export class UserService {
   /*
    * Update User data
    */
-  static async updateUser(id: string, userData: any): Promise<User> {
-    await db.User.update(
+  async updateUser(id: string, userData: any): Promise<User> {
+    await this.db.User.update(
       {
         ...userData,
       },
@@ -57,8 +62,8 @@ export class UserService {
   /*
    * Deactivate User data
    */
-  static async deactivateUser(uuid: string): Promise<User> {
-    const result = await db.User.update(
+  async deactivateUser(uuid: string): Promise<User> {
+    const result = await this.db.User.update(
       {
         active: false,
       },
@@ -72,8 +77,8 @@ export class UserService {
     return this.getUserById(uuid);
   }
 
-  static async getUserByUsername(username: string): Promise<User> {
-    return db.User.findOne({
+  async getUserByUsername(username: string): Promise<User> {
+    return this.db.User.findOne({
       where: {
         username,
       },

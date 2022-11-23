@@ -4,8 +4,50 @@ import {BookController} from '../controllers/bookController';
 import {authenticateUserToken} from '../middleware/authenticateToken';
 import {RequestCustom} from '../utils/types';
 import {authorPermissionCreateBook} from '../middleware/authorPermissionCreateBook';
+import {Router} from 'express';
 
-const router = express.Router();
+export class BookRouter {
+  private bookController: BookController;
+  private router: Router;
+
+  constructor() {
+    this.bookController = new BookController();
+    this.router = express.Router();
+    this.initRouts();
+  }
+
+  initRouts() {
+    this.router.get('/books', async (req: Request, res: Response) => {
+      await this.bookController.getBooks(req, res);
+    });
+    this.router.post(
+      '/books/new',
+      authenticateUserToken,
+      authorPermissionCreateBook,
+      async (req: Request, res: Response) => {
+        await this.bookController.createBook(req, res);
+      },
+    );
+    this.router.delete(
+      '/books/delete/:id',
+      authenticateUserToken,
+      async (req: RequestCustom, res: Response) => {
+        await this.bookController.deleteBook(req, res);
+      },
+    );
+    this.router.put(
+      '/books/update/:id',
+      authenticateUserToken,
+      async (req: RequestCustom, res: Response) => {
+        await this.bookController.updateBook(req, res);
+      },
+    );
+  }
+
+  getRouter(){
+    return this.router;
+  }
+}
 
 /**
  * @openapi
@@ -32,9 +74,6 @@ const router = express.Router();
  *      400:
  *        description: Bad request
  */
-router.get('/books', async (req: Request, res: Response) => {
-  await BookController.getBooks(req, res);
-});
 
 /**
  * @openapi
@@ -58,14 +97,6 @@ router.get('/books', async (req: Request, res: Response) => {
  *      400:
  *        description: Bad request
  */
-router.post(
-  '/books/new',
-  authenticateUserToken,
-  authorPermissionCreateBook,
-  async (req: Request, res: Response) => {
-    await BookController.createBook(req, res);
-  },
-);
 
 /**
  * @openapi
@@ -87,13 +118,6 @@ router.post(
  *      400:
  *        description: Bad request
  */
-router.delete(
-  '/books/delete/:id',
-  authenticateUserToken,
-  async (req: RequestCustom, res: Response) => {
-    await BookController.deleteBook(req, res);
-  },
-);
 
 /**
  * @openapi
@@ -121,12 +145,3 @@ router.delete(
  *      400:
  *        description: Bad request
  */
-router.put(
-  '/books/update/:id',
-  authenticateUserToken,
-  async (req: RequestCustom, res: Response) => {
-    await BookController.updateBook(req, res);
-  },
-);
-
-export const bookRoutes = router;

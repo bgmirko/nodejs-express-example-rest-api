@@ -1,8 +1,8 @@
 import 'reflect-metadata';
 import express, {Request, Response, NextFunction} from 'express';
 import db from './database/models';
-import {userRoutes} from './routes/userRoutes';
-import {bookRoutes} from './routes/bookRoutes';
+import {UserRouter} from './routes/userRoutes';
+import {BookRouter} from './routes/bookRoutes';
 import swaggerDocs from './utils/swagger';
 
 const PORT = process.env.PORT ?? 3000;
@@ -15,8 +15,8 @@ app.get('/', (req: Request, res: Response) => {
   res.send('<h1>Hello from Q Software Book Management</h1>');
 });
 
-app.use(userRoutes);
-app.use(bookRoutes);
+app.use(new UserRouter().getRouter());
+app.use(new BookRouter().getRouter());
 
 //Error handler must be last app.use!!
 app.use((err, req: Request, res: Response, next: NextFunction) => {

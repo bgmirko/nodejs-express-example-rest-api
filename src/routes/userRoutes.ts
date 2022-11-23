@@ -1,9 +1,68 @@
-import express from 'express';
+import express, { Router } from 'express';
 import type {Request, Response} from 'express';
 import {UserController} from '../controllers/userController';
 import {authenticateUserToken} from '../middleware/authenticateToken';
 import {isAdmin} from '../middleware/isAdmin';
 import {RequestCustom} from '../utils/types';
+
+
+export class UserRouter {
+  private userController: UserController;
+  private router: Router;
+
+  constructor(){
+    this.userController = new UserController();
+    this.router = express.Router();
+    this.initRouter()
+  }
+
+  private initRouter(){
+    this.router.get('/users', async (req: Request, res: Response) => {
+      await this.userController.getUsers(req, res);
+    });
+    this.router.post(
+      '/users/new',
+      authenticateUserToken,
+      isAdmin,
+      async (req: Request, res: Response) => {
+        await this.userController.createUser(req, res);
+      },
+    );
+    this.router.delete(
+      '/users/delete/:id',
+      authenticateUserToken,
+      isAdmin,
+      async (req: Request, res: Response) => {
+        await this.userController.softDeleteUser(req, res);
+      },
+    );
+    this.router.put(
+      '/users/update/:id',
+      authenticateUserToken,
+      isAdmin,
+      async (req: Request, res: Response) => {
+        await this.userController.updateUser(req, res);
+      },
+    );
+    this.router.post(
+      '/users/deactivate',
+      authenticateUserToken,
+      async (req: RequestCustom, res: Response) => {
+        await this.userController.deactivateUser(req, res);
+      },
+    );
+    this.router.post('/users/login', async (req: Request, res: Response) => {
+      await this.userController.loginUser(req, res);
+    });
+    this.router.post('/users/refresh_token', async (req: Request, res: Response) => {
+      await this.userController.refreshToken(req, res);
+    });
+  }
+
+  public getRouter(){
+    return this.router;
+  }
+}
 
 const router = express.Router();
 
@@ -32,9 +91,7 @@ const router = express.Router();
  *      400:
  *        description: Bad request
  */
-router.get('/users', async (req: Request, res: Response) => {
-  await UserController.getUsers(req, res);
-});
+
 
 /**
  * @openapi
@@ -62,14 +119,7 @@ router.get('/users', async (req: Request, res: Response) => {
  *      400:
  *        description: Bad request
  */
-router.post(
-  '/users/new',
-  authenticateUserToken,
-  isAdmin,
-  async (req: Request, res: Response) => {
-    await UserController.createUser(req, res);
-  },
-);
+
 
 /**
  * @openapi
@@ -91,14 +141,6 @@ router.post(
  *      400:
  *        description: Bad request
  */
-router.delete(
-  '/users/delete/:id',
-  authenticateUserToken,
-  isAdmin,
-  async (req: Request, res: Response) => {
-    await UserController.softDeleteUser(req, res);
-  },
-);
 
 /**
  * @openapi
@@ -126,14 +168,6 @@ router.delete(
  *      400:
  *        description: Bad request
  */
-router.put(
-  '/users/update/:id',
-  authenticateUserToken,
-  isAdmin,
-  async (req: Request, res: Response) => {
-    await UserController.updateUser(req, res);
-  },
-);
 
 /**
  * @openapi
@@ -151,13 +185,6 @@ router.put(
  *      400:
  *        description: Bad request
  */
-router.post(
-  '/users/deactivate',
-  authenticateUserToken,
-  async (req: RequestCustom, res: Response) => {
-    await UserController.deactivateUser(req, res);
-  },
-);
 
 /**
  * @openapi
@@ -183,9 +210,6 @@ router.post(
  *      400:
  *        description: Bad request
  */
-router.post('/users/login', async (req: Request, res: Response) => {
-  await UserController.loginUser(req, res);
-});
 
 /**
  * @openapi
@@ -211,8 +235,3 @@ router.post('/users/login', async (req: Request, res: Response) => {
  *      400:
  *        description: Bad request
  */
-router.post('/users/refresh_token', async (req: Request, res: Response) => {
-  await UserController.refreshToken(req, res);
-});
-
-export const userRoutes = router;

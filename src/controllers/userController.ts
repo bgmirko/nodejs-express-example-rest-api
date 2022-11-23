@@ -9,11 +9,18 @@ import {
 import {TokenUserPayload, TokenData, RequestCustom} from '../utils/types';
 import jwt from 'jsonwebtoken';
 import {RoleType} from '../utils/enums';
+import db from '../database/models';
 
 export class UserController {
-  static async getUsers(req: Request, res: Response) {
+  private userService: UserService;
+
+  constructor(){
+    this.userService = new UserService(db);
+  }
+
+  async getUsers(req: Request, res: Response) {
     try {
-      const {rows, count} = await UserService.getUsers(req.query);
+      const {rows, count} = await this.userService.getUsers(req.query);
       res.json({
         success: true,
         data: {
@@ -30,9 +37,9 @@ export class UserController {
     }
   }
 
-  static async createUser(req: Request, res: Response) {
+  async createUser(req: Request, res: Response) {
     try {
-      const user: User = await UserService.createUser(req.body);
+      const user: User = await this.userService.createUser(req.body);
       res.json({
         success: true,
         user: user,
@@ -46,10 +53,10 @@ export class UserController {
     }
   }
 
-  static async softDeleteUser(req: Request, res: Response) {
+  async softDeleteUser(req: Request, res: Response) {
     try {
       const id: string = req.params.id;
-      const user: User = await UserService.getUserById(id);
+      const user: User = await this.userService.getUserById(id);
       if (!user) {
         return res.status(400).json({
           success: false,
@@ -63,30 +70,30 @@ export class UserController {
             'You are not able to delete user with Admin role which is active',
         });
       }
-      await UserService.softDeleteUser(id);
+      await this.userService.softDeleteUser(id);
       res.json({
         success: true,
         message: 'User is deleted successfully',
       });
     } catch (error) {
-      res.status(400).json({
+      res.status(500).json({
         success: false,
         message: error.message,
       });
     }
   }
 
-  static async updateUser(req: Request, res: Response) {
+  async updateUser(req: Request, res: Response) {
     try {
       const id: string = req.params.id;
-      const user: User = await UserService.getUserById(id);
+      const user: User = await this.userService.getUserById(id);
       if (!user) {
         return res.status(400).json({
           success: false,
           message: "User doesn't exists",
         });
       }
-      const updatedUser: User = await UserService.updateUser(id, req.body);
+      const updatedUser: User = await this.userService.updateUser(id, req.body);
       res.json({
         success: true,
         data: {
@@ -95,17 +102,17 @@ export class UserController {
         message: 'User is updated successfully',
       });
     } catch (error) {
-      res.status(400).json({
+      res.status(500).json({
         success: false,
         message: error.message,
       });
     }
   }
 
-  static async deactivateUser(req: RequestCustom, res: Response) {
+  async deactivateUser(req: RequestCustom, res: Response) {
     try {
       const userData: TokenUserPayload = req.user;
-      const updatedUser: User = await UserService.deactivateUser(userData.uuid);
+      const updatedUser: User = await this.userService.deactivateUser(userData.uuid);
       res.json({
         success: true,
         data: {
@@ -114,19 +121,19 @@ export class UserController {
         message: 'User is deactivated successfully',
       });
     } catch (error) {
-      res.status(400).json({
+      res.status(500).json({
         success: false,
         message: error.message,
       });
     }
   }
 
-  static async loginUser(req: Request, res: Response) {
+  async loginUser(req: Request, res: Response) {
     try {
       const password: string = req.body.password;
       const username: string = req.body.username;
 
-      const user: User = await UserService.getUserByUsername(username);
+      const user: User = await this.userService.getUserByUsername(username);
 
       if (user == null) {
         return res.status(400).json({
@@ -162,14 +169,14 @@ export class UserController {
         });
       }
     } catch (error) {
-      res.status(400).json({
+      res.status(500).json({
         success: false,
         message: error.message,
       });
     }
   }
 
-  static async refreshToken(req: Request, res: Response) {
+  async refreshToken(req: Request, res: Response) {
     try {
       if (!req.body.refreshToken) {
         throw new Error('refreshToken missing');
@@ -203,7 +210,7 @@ export class UserController {
         },
       );
     } catch (error) {
-      return res.status(400).json({
+      return res.status(500).json({
         success: false,
         message: error.message,
       });

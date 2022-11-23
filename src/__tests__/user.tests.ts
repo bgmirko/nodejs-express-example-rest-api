@@ -19,30 +19,34 @@ describe('User Management', () => {
   });
 
   it('Find user by his username should return user Petar', async () => {
-    const user: User = await UserService.getUserByUsername('petar80');
+    const userService = new UserService(db);
+    const user: User = await userService.getUserByUsername('petar80');
     expect(user.username === 'petar80').toBeTruthy();
   });
 
   it("After user is deleted, it shouldn't be possible to fetch him", async () => {
-    const user: User = await UserService.getUserByUsername('petar80');
-    await UserService.softDeleteUser(user.uuid);
-    const userRefetch = await UserService.getUserByUsername('petar80');
+    const userService = new UserService(db);
+    const user: User = await userService.getUserByUsername('petar80');
+    await userService.softDeleteUser(user.uuid);
+    const userRefetch = await userService.getUserByUsername('petar80');
     expect(userRefetch).toBeNull();
   });
 
   it('After user email is changed in db to new@gmail.com user should have new@gmail.com email address on fetch', async () => {
-    const user: User = await UserService.getUserByUsername('petar80');
+    const userService = new UserService(db);
+    const user: User = await userService.getUserByUsername('petar80');
     const userData = {
       email: 'new@gmail.com',
     };
-    const updatedUser = await UserService.updateUser(user.uuid, userData);
+    const updatedUser = await userService.updateUser(user.uuid, userData);
     expect(updatedUser.email).toBe('new@gmail.com');
   });
 
   it('When user is deactivated he should be deactivated', async () => {
-    const user: User = await UserService.getUserByUsername('petar80');
-    await UserService.deactivateUser(user.uuid);
-    const userRefetch: User = await UserService.getUserByUsername('petar80');
+    const userService = new UserService(db);
+    const user: User = await userService.getUserByUsername('petar80');
+    await userService.deactivateUser(user.uuid);
+    const userRefetch: User = await userService.getUserByUsername('petar80');
     expect(userRefetch.active).toBeFalsy();
   });
 });

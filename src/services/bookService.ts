@@ -1,24 +1,29 @@
-import db from '../database/models';
 import {Book} from '../database/modelsTypes';
 
 export class BookService {
+  // TODO implement type
+  private db;
+
+  constructor(database){
+    this.db = database;
+  }
   // fetch books with pagination
-  static async getBooks(query): Promise<{count: number; rows: [Book]}> {
-    return db.Book.findAndCountAll({
+  async getBooks(query): Promise<{count: number; rows: [Book]}> {
+    return this.db.Book.findAndCountAll({
       attributes: {exclude: ['userId']},
       offset: query?.cursor ?? 0,
       limit: query?.limit ?? 10,
     });
   }
 
-  static async createBook(book: Book): Promise<Book> {
-    return db.Book.create({
+  async createBook(book: Book): Promise<Book> {
+    return this.db.Book.create({
       ...book,
     });
   }
 
-  static async getBookById(id: number): Promise<Book> {
-    return db.Book.findOne({
+  async getBookById(id: number): Promise<Book> {
+    return this.db.Book.findOne({
       where: {
         id,
       },
@@ -26,8 +31,8 @@ export class BookService {
     });
   }
 
-  static async deleteBook(id: number): Promise<boolean> {
-    return db.Book.destroy({
+  async deleteBook(id: number): Promise<boolean> {
+    return this.db.Book.destroy({
       where: {
         id,
       },
@@ -37,8 +42,8 @@ export class BookService {
   /*
    * Update Book data
    */
-  static async updateBook(id: number, bookData: any): Promise<Book> {
-    const result = await db.Book.update(
+  async updateBook(id: number, bookData: any): Promise<Book> {
+    const result = await this.db.Book.update(
       {
         ...bookData,
       },
