@@ -14,7 +14,7 @@ export const authenticateUserToken = async (
     jwt.verify(
       token,
       process.env.ACCESS_TOKEN_SECRET,
-      (err: any, user: User) => {
+      (err, user: User) => {
         if (err) return res.sendStatus(401);
         req.user = user;
         next();

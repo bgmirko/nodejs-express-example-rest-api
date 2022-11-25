@@ -42,7 +42,7 @@ export class BookService {
   /*
    * Update Book data
    */
-  async updateBook(id: number, bookData: any): Promise<Book> {
+  async updateBook(id: number, bookData: Partial<Book>): Promise<Book> {
     const result = await this.db.Book.update(
       {
         ...bookData,

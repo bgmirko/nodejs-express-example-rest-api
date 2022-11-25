@@ -44,7 +44,7 @@ export class UserService {
   /*
    * Update User data
    */
-  async updateUser(id: string, userData: any): Promise<User> {
+  async updateUser(id: string, userData: Partial<User>): Promise<User> {
     await this.db.User.update(
       {
         ...userData,
@@ -63,7 +63,7 @@ export class UserService {
    * Deactivate User data
    */
   async deactivateUser(uuid: string): Promise<User> {
-    const result = await this.db.User.update(
+    await this.db.User.update(
       {
         active: false,
       },

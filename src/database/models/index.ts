@@ -12,17 +12,17 @@ const {Client} = require('pg');
 let client;
 if (env == 'localhost') {
   client = new Client({
-    user: 'postgres',
-    password: 'password',
-    host: 'db',
-    database: 'postgres',
+    user: process.env.DB_USER,
+    password: process.env.DB_PASSWORD,
+    host: process.env.DB_HOST,
+    database: process.env.DEFAULT_DATABASE,
   });
-} else if (env == 'test') {
+} else if (env == 'test' || env == 'development') {
   client = new Client({
-    user: 'postgres',
-    password: 'password',
-    host: 'localhost',
-    database: 'postgres',
+    user: process.env.DB_USER,
+    password: process.env.DB_PASSWORD,
+    host: process.env.DB_HOST_DEVELOPMENT,
+    database: process.env.DEFAULT_DATABASE,
   });
 }
 
