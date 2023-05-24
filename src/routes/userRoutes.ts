@@ -1,22 +1,21 @@
-import express, { Router } from 'express';
+import express, {Router} from 'express';
 import type {Request, Response} from 'express';
 import {UserController} from '../controllers/userController';
 import {authenticateUserToken} from '../middleware/authenticateToken';
 import {isAdmin} from '../middleware/isAdmin';
 import {RequestCustom} from '../utils/types';
+import {Service} from 'typedi';
 
-
+@Service()
 export class UserRouter {
-  private userController: UserController;
   private router: Router;
 
-  constructor(){
-    this.userController = new UserController();
+  constructor(private userController: UserController) {
     this.router = express.Router();
-    this.initRouter()
+    this.initRouter();
   }
 
-  private initRouter(){
+  initRouter() {
     this.router.get('/users', async (req: Request, res: Response) => {
       await this.userController.getUsers(req, res);
     });
@@ -54,12 +53,15 @@ export class UserRouter {
     this.router.post('/users/login', async (req: Request, res: Response) => {
       await this.userController.loginUser(req, res);
     });
-    this.router.post('/users/refresh_token', async (req: Request, res: Response) => {
-      await this.userController.refreshToken(req, res);
-    });
+    this.router.post(
+      '/users/refresh_token',
+      async (req: Request, res: Response) => {
+        await this.userController.refreshToken(req, res);
+      },
+    );
   }
 
-  public getRouter(){
+  public getRouter() {
     return this.router;
   }
 }
@@ -92,7 +94,6 @@ const router = express.Router();
  *        description: Bad request
  */
 
-
 /**
  * @openapi
  * '/users/new':
@@ -119,7 +120,6 @@ const router = express.Router();
  *      400:
  *        description: Bad request
  */
-
 
 /**
  * @openapi

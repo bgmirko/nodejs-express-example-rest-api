@@ -1,11 +1,15 @@
+import {Service} from 'typedi';
 import {Book} from '../database/modelsTypes';
+import db from '../database/models';
 
+@Service()
 export class BookService {
   // TODO implement type
   private db;
 
-  constructor(database){
-    this.db = database;
+  // TODO inject database
+  constructor() {
+    this.db = db;
   }
   // fetch books with pagination
   async getBooks(query): Promise<{count: number; rows: [Book]}> {

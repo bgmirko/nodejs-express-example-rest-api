@@ -4,13 +4,11 @@ import {Book} from '../database/modelsTypes';
 import {TokenUserPayload} from '../utils/types';
 import {RequestCustom} from '../utils/types';
 import {RoleType} from '../utils/enums';
-import db from '../database/models';
-export class BookController {
-  private bookService: BookService
+import { Service } from 'typedi';
 
-  constructor(){
-    this.bookService = new BookService(db);
-  }
+@Service()
+export class BookController {
+  constructor(private bookService: BookService) {}
 
   async getBooks(req: Request, res: Response) {
     try {

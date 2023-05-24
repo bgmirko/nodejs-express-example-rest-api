@@ -5,13 +5,13 @@ import {authenticateUserToken} from '../middleware/authenticateToken';
 import {RequestCustom} from '../utils/types';
 import {authorPermissionCreateBook} from '../middleware/authorPermissionCreateBook';
 import {Router} from 'express';
+import { Service } from 'typedi';
 
+@Service()
 export class BookRouter {
-  private bookController: BookController;
   private router: Router;
 
-  constructor() {
-    this.bookController = new BookController();
+  constructor(private bookController: BookController) {
     this.router = express.Router();
     this.initRouts();
   }
@@ -44,7 +44,7 @@ export class BookRouter {
     );
   }
 
-  getRouter(){
+  getRouter() {
     return this.router;
   }
 }

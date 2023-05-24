@@ -27,7 +27,7 @@ describe('Book tests', () => {
   });
 
   it("After book is deleted, it shouldn't be possible to fetch it", async () => {
-    const bookService = new BookService(db);
+    const bookService = new BookService();
     const book: Book = await bookService.getBookById(1);
     await bookService.deleteBook(book.id);
     const bookRefetch: Book = await bookService.getBookById(1);
@@ -35,7 +35,7 @@ describe('Book tests', () => {
   });
 
   it('After book title is changed in db to New Title book should have New Title title on fetch', async () => {
-    const bookService = new BookService(db);
+    const bookService = new BookService();
     const book: Book = await bookService.getBookById(1);
     const bookData = {
       title: 'New Title',
@@ -45,7 +45,7 @@ describe('Book tests', () => {
   });
 
   it('After book is created it should be exists in database', async () => {
-    const bookService = new BookService(db);
+    const bookService = new BookService();
     const book: Book = await bookService.getBookById(1);
     expect(book).toBeDefined();
   });

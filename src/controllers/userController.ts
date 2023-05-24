@@ -9,14 +9,11 @@ import {
 import {TokenUserPayload, TokenData, RequestCustom} from '../utils/types';
 import jwt from 'jsonwebtoken';
 import {RoleType} from '../utils/enums';
-import db from '../database/models';
+import { Service } from 'typedi';
 
+@Service()
 export class UserController {
-  private userService: UserService;
-
-  constructor(){
-    this.userService = new UserService(db);
-  }
+  constructor(private userService: UserService) {}
 
   async getUsers(req: Request, res: Response) {
     try {
@@ -112,7 +109,9 @@ export class UserController {
   async deactivateUser(req: RequestCustom, res: Response) {
     try {
       const userData: TokenUserPayload = req.user;
-      const updatedUser: User = await this.userService.deactivateUser(userData.uuid);
+      const updatedUser: User = await this.userService.deactivateUser(
+        userData.uuid,
+      );
       res.json({
         success: true,
         data: {

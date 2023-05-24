@@ -4,6 +4,7 @@ import db from './database/models';
 import {UserRouter} from './routes/userRoutes';
 import {BookRouter} from './routes/bookRoutes';
 import swaggerDocs from './utils/swagger';
+import {Container} from 'typedi';
 
 const PORT = process.env.PORT ?? 3000;
 
@@ -15,8 +16,8 @@ app.get('/', (req: Request, res: Response) => {
   res.send('<h1>Hello from Q Software Book Management</h1>');
 });
 
-app.use(new UserRouter().getRouter());
-app.use(new BookRouter().getRouter());
+app.use(Container.get(UserRouter).getRouter());
+app.use(Container.get(BookRouter).getRouter());
 
 //Error handler must be last app.use!!
 app.use((err, req: Request, res: Response, next: NextFunction) => {

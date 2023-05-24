@@ -1,11 +1,15 @@
 import {User} from '../database/modelsTypes';
+import {Service} from 'typedi';
+import db from '../database/models';
 
+@Service()
 export class UserService {
   // TODO implement type
   private db;
 
-  constructor(database){
-    this.db = database;
+  // TODO inject database
+  constructor(){
+    this.db = db;
   } 
   // fetch Users with pagination
   async getUsers(query): Promise<{count: number; rows: [User]}> {
