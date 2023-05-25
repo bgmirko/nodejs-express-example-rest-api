@@ -4,11 +4,9 @@ import Book from "./book";
 const env = process.env.NODE_ENV || "development";
 const config = require(__dirname + "/../config/config.js")[env];
 
-
-
 const sequelize = new Sequelize({
   host: config.host,
-  // port: config.port,
+  port: config.port,
   database: config.database,
   username: config.username,
   password: config.password,

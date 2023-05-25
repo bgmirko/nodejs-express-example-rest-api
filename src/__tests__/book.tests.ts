@@ -1,10 +1,11 @@
-import db from '../database/models';
+import db, {sequelize} from '../database/models';
 import {BookService} from '../services/bookService';
-import {Book} from '../database/modelsTypes';
+import Book from '../database/models/book';
+import { RoleType } from '../utils/enums';
 
 describe('Book tests', () => {
   beforeEach(async () => {
-    await db.sequelize.sync({force: true});
+    await sequelize.sync({force: true});
     await db.User.create({
       uuid: '956b086d-f22d-43a3-8966-77d412555c3e',
       firstName: 'Petar',
@@ -13,7 +14,7 @@ describe('Book tests', () => {
       email: 'petar@gmail.com',
       username: 'petar80',
       active: true,
-      role: 'Admin',
+      role: RoleType.Admin,
     });
     await db.Book.create({
       id: 1,
