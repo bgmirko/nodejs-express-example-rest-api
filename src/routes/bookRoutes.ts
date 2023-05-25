@@ -1,11 +1,10 @@
 import express from 'express';
-import type {Request, Response} from 'express';
+import type {Request, Response, Router} from 'express';
 import {BookController} from '../controllers/bookController';
 import {authenticateUserToken} from '../middleware/authenticateToken';
 import {RequestCustom} from '../utils/types';
 import {authorPermissionCreateBook} from '../middleware/authorPermissionCreateBook';
-import {Router} from 'express';
-import { Service } from 'typedi';
+import {Service} from 'typedi';
 
 @Service()
 export class BookRouter {

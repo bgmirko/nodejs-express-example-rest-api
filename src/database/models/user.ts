@@ -1,86 +1,61 @@
-import {Model} from 'sequelize';
 import {RoleType} from '../../utils/enums';
+import {
+  Table,
+  Column,
+  Model,
+  CreatedAt,
+  UpdatedAt,
+  DataType,
+  HasMany,
+  DeletedAt,
+} from 'sequelize-typescript';
+import Book from './book';
 
-export interface UserAttributes {
+@Table({tableName: 'User'})
+export default class User extends Model<User> {
+  @Column({
+    type: DataType.UUID,
+    primaryKey: true,
+    defaultValue: DataType.UUIDV4,
+  })
   uuid: string;
+
+  @Column({allowNull: false, validate: {notEmpty: true}})
   firstName: string;
+
+  @Column({allowNull: false, validate: {notEmpty: true}})
   lastName: string;
+
+  @Column({allowNull: false, validate: {notEmpty: true}})
   username: string;
-  password: string;
+
+  @Column({
+    allowNull: false,
+    unique: true,
+    validate: {notEmpty: true, isEmail: true},
+  })
   email: string;
-  role: RoleType;
+
+  @Column({allowNull: false, validate: {notEmpty: true}})
+  password: string;
+
+  @Column({defaultValue: true})
   active: boolean;
+
+  @Column(DataType.ENUM(RoleType.Admin, RoleType.Author))
+  role: RoleType;
+
+  @CreatedAt
+  declare createdAt: Date;
+
+  @UpdatedAt
+  declare updatedAt: Date;
+
+  @DeletedAt
+  declare deletedAt: Date;
+
+  @HasMany(() => Book, {
+    foreignKey: 'userUid',
+  })
+  books: Book[];
 }
-
-module.exports = (sequelize, DataTypes) => {
-  class User extends Model<UserAttributes> implements UserAttributes {
-    /**
-     * Helper method for defining associations.
-     * This method is not a part of Sequelize lifecycle.
-     * The `models/index` file will call this method automatically.
-     */
-    uuid: string;
-    firstName: string;
-    lastName: string;
-    username: string;
-    password: string;
-    email: string;
-    role: RoleType;
-    active: boolean;
-
-    static associate(models) {
-      User.hasMany(models.Book, {
-        foreignKey: 'userUid',
-        onDelete: 'cascade',
-      });
-    }
-  }
-  User.init(
-    {
-      uuid: {
-        type: DataTypes.UUID,
-        defaultValue: DataTypes.UUIDV4,
-        primaryKey: true,
-      },
-      firstName: {
-        type: DataTypes.STRING,
-        allowNull: false,
-      },
-      lastName: {
-        type: DataTypes.STRING,
-        allowNull: false,
-      },
-      username: {
-        unique: true,
-        type: DataTypes.STRING,
-        allowNull: false,
-      },
-      password: {
-        type: DataTypes.STRING,
-        allowNull: false,
-      },
-      email: {
-        type: DataTypes.STRING,
-        allowNull: false,
-        validate: {
-          isEmail: true,
-        },
-      },
-      role: {
-        type: DataTypes.ENUM,
-        values: Object.values(RoleType),
-        allowNull: false,
-      },
-      active: {
-        type: DataTypes.BOOLEAN,
-        defaultValue: true,
-      },
-    },
-    {
-      sequelize,
-      modelName: 'User',
-      paranoid: true,
-    },
-  );
-  return User;
-};

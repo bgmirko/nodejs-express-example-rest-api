@@ -1,6 +1,6 @@
 import {UserService} from '../services/userService';
 import type {Request, Response} from 'express';
-import {User} from '../database/modelsTypes';
+import User from '../database/models/user';
 import bcrypt from 'bcryptjs';
 import {
   generateAccessToken,

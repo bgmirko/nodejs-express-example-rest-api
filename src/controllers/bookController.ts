@@ -1,6 +1,6 @@
 import {BookService} from '../services/bookService';
 import type {Request, Response} from 'express';
-import {Book} from '../database/modelsTypes';
+import Book from '../database/models/book';
 import {TokenUserPayload} from '../utils/types';
 import {RequestCustom} from '../utils/types';
 import {RoleType} from '../utils/enums';

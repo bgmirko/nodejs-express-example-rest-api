@@ -1,6 +1,6 @@
 import {Request} from 'express';
-import {User} from '../database/modelsTypes';
 import {RoleType} from './enums';
+import User from '../database/models/user';
 
 export interface RequestCustom extends Request {
   user: User;

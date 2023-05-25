@@ -1,7 +1,7 @@
 import jwt from 'jsonwebtoken';
 import type {Response, NextFunction} from 'express';
 import {RequestCustom} from '../utils/types';
-import {User} from '../database/modelsTypes';
+import User from '../database/models/user';
 
 export const authenticateUserToken = async (
   req: RequestCustom,

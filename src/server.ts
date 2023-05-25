@@ -1,6 +1,6 @@
 import 'reflect-metadata';
 import express, {Request, Response, NextFunction} from 'express';
-import db from './database/models';
+import { sequelize } from "./database/models";
 import {UserRouter} from './routes/userRoutes';
 import {BookRouter} from './routes/bookRoutes';
 import swaggerDocs from './utils/swagger';
@@ -28,7 +28,7 @@ app.use((err, req: Request, res: Response, next: NextFunction) => {
 });
 
 app.listen(PORT, () => {
-  db.sequelize.sync().then(() => {
+  sequelize.sync().then(() => {
     /* eslint-disable no-console */
     console.log(`App running on port ${PORT}`);
   });

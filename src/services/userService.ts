@@ -1,4 +1,4 @@
-import {User} from '../database/modelsTypes';
+import User from '../database/models/user';
 import {Service} from 'typedi';
 import db from '../database/models';
 
@@ -15,7 +15,7 @@ export class UserService {
   async getUsers(query): Promise<{count: number; rows: [User]}> {
     return this.db.User.findAndCountAll({
       attributes: {exclude: ['deleteAt']},
-      include: [{model: this.db.Book, as: 'Books'}],
+      include: [{model: this.db.Book, as: 'books'}],
       offset: query?.cursor ?? 0,
       limit: query?.limit ?? 10,
     });

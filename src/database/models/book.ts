@@ -1,71 +1,49 @@
-import {Model} from 'sequelize';
-import {RoleType} from '../../utils/enums';
+import {
+  Table,
+  Column,
+  Model,
+  CreatedAt,
+  UpdatedAt,
+  DataType,
+  ForeignKey,
+  BelongsTo,
+  AutoIncrement,
+  PrimaryKey,
+} from 'sequelize-typescript';
+import User from './user';
 
-export interface BookAttributes {
-  id: number;
+@Table({tableName: 'Book'})
+export default class Book extends Model<Book> {
+  @PrimaryKey
+  @AutoIncrement
+  @Column({type: DataType.INTEGER})
+  declare id: number;
+
+  @ForeignKey(() => User)
+  @Column({type: DataType.UUID})
   userUid: string;
+
+  @Column({allowNull: false, validate: {notEmpty: true}})
   title: string;
+
+  @Column({allowNull: false, validate: {notEmpty: true}})
   publisher: string;
+
+  @Column({allowNull: true, validate: {notEmpty: true}})
   description: string;
+
+  @Column({allowNull: false, validate: {notEmpty: false}})
   genre: string;
+
+  @Column({allowNull: true, validate: {notEmpty: true}})
   numberOfPages: number;
+
+  @CreatedAt
+  declare createdAt: Date;
+
+  @UpdatedAt
+  declare updatedAt: Date;
+
+  @BelongsTo(() => User, 'uuid')
+  user: User;
 }
-
-module.exports = (sequelize, DataTypes) => {
-  class Book extends Model<BookAttributes> implements BookAttributes {
-    id: number;
-    userUid: string;
-    title: string;
-    publisher: string;
-    description: string;
-    genre: string;
-    numberOfPages: number;
-
-    static associate(models) {
-      Book.belongsTo(models.User, {foreignKey: 'userUid', as: 'Books'});
-    }
-  }
-  Book.init(
-    {
-      id: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
-        primaryKey: true,
-        autoIncrement: true,
-      },
-      userUid: {
-        type: DataTypes.UUID,
-        allowNull: false,
-        references: {
-          model: 'Users',
-          key: 'uuid',
-        },
-      },
-      title: {
-        type: DataTypes.STRING,
-        allowNull: false,
-      },
-      publisher: {
-        type: DataTypes.STRING,
-        allowNull: false,
-      },
-      description: {
-        type: DataTypes.STRING,
-        allowNull: true,
-      },
-      genre: {
-        type: DataTypes.STRING,
-        allowNull: false,
-      },
-      numberOfPages: {
-        type: DataTypes.INTEGER,
-        allowNull: true,
-      },
-    },
-    {
-      sequelize,
-      modelName: 'Book',
-    },
-  );
-  return Book;
-};

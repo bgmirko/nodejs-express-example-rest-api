@@ -3,7 +3,7 @@
 module.exports = {
   async up (queryInterface, Sequelize) {
 
-    return queryInterface.bulkInsert('Books', [
+    return queryInterface.bulkInsert('Book', [
       {
         userUid: "956b086d-f22d-43a3-8966-77d412555c3e",
         title: "The Night Ship",
@@ -88,6 +88,6 @@ module.exports = {
   },
 
   async down (queryInterface, Sequelize) {
-    return queryInterface.bulkDelete('Books', null, {});
+    return queryInterface.bulkDelete('Book', null, {});
   }
 };
