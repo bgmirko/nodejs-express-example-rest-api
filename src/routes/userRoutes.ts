@@ -5,6 +5,8 @@ import {authenticateUserToken} from '../middleware/authenticateToken';
 import {isAdmin} from '../middleware/isAdmin';
 import {RequestCustom} from '../utils/types';
 import {Service} from 'typedi';
+import { validateDto } from '../middleware/validateDto';
+import User from '../database/models/user';
 
 @Service()
 export class UserRouter {
@@ -22,6 +24,7 @@ export class UserRouter {
     this.router.post(
       '/',
       authenticateUserToken,
+      validateDto(User),
       isAdmin,
       async (req: Request, res: Response) => {
         await this.userController.createUser(req, res);
