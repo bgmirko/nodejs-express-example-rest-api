@@ -81,7 +81,7 @@ export class BookRouter {
 
 /**
  * @openapi
- * '/books/new':
+ * '/books':
  *  post:
  *     security:
  *     - Bearer: []
@@ -104,7 +104,7 @@ export class BookRouter {
 
 /**
  * @openapi
- * '/books/delete/{id}':
+ * '/books/{id}':
  *  delete:
  *     tags:
  *     - Books
@@ -125,7 +125,7 @@ export class BookRouter {
 
 /**
  * @openapi
- * '/books/update/{id}':
+ * '/books/{id}':
  *  put:
  *     tags:
  *     - Books

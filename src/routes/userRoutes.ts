@@ -96,7 +96,7 @@ export class UserRouter {
 
 /**
  * @openapi
- * '/users/new':
+ * '/users':
  *  post:
  *     security:
  *     - Bearer: []
@@ -123,7 +123,7 @@ export class UserRouter {
 
 /**
  * @openapi
- * '/users/delete/{id}':
+ * '/users/{id}':
  *  delete:
  *     tags:
  *     - User
@@ -144,7 +144,7 @@ export class UserRouter {
 
 /**
  * @openapi
- * '/users/update/{id}':
+ * '/users/{id}':
  *  put:
  *     tags:
  *     - User
