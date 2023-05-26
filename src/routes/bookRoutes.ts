@@ -5,6 +5,9 @@ import {authenticateUserToken} from '../middleware/authenticateToken';
 import {RequestCustom} from '../utils/types';
 import {authorPermissionCreateBook} from '../middleware/authorPermissionCreateBook';
 import {Service} from 'typedi';
+import {validateDto} from '../middleware/validateDto';
+import Book from '../database/models/book';
+import {UpdateBookDto} from '../database/models/dtos/bookDto';
 
 @Service()
 export class BookRouter {
@@ -23,6 +26,7 @@ export class BookRouter {
       '/',
       authenticateUserToken,
       authorPermissionCreateBook,
+      validateDto(Book),
       async (req: Request, res: Response) => {
         await this.bookController.createBook(req, res);
       },
@@ -37,6 +41,7 @@ export class BookRouter {
     this.router.put(
       '/:id',
       authenticateUserToken,
+      validateDto(UpdateBookDto),
       async (req: RequestCustom, res: Response) => {
         await this.bookController.updateBook(req, res);
       },

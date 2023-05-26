@@ -10,6 +10,14 @@ import {
   AutoIncrement,
   PrimaryKey,
 } from 'sequelize-typescript';
+import {
+  IsString,
+  IsNumber,
+  IsUUID,
+  MaxLength,
+  Length,
+  IsNotEmpty,
+} from 'class-validator';
 import User from './user';
 
 @Table({tableName: 'Book'})
@@ -21,21 +29,31 @@ export default class Book extends Model<Book> {
 
   @ForeignKey(() => User)
   @Column({type: DataType.UUID})
+  @IsNotEmpty()
+  @IsUUID()
   userUid: string;
 
   @Column({allowNull: false, validate: {notEmpty: true}})
+  @IsNotEmpty()
+  @MaxLength(50)
   title: string;
 
   @Column({allowNull: false, validate: {notEmpty: true}})
+  @IsNotEmpty()
+  @Length(3, 20)
   publisher: string;
 
-  @Column({allowNull: true, validate: {notEmpty: true}})
+  @Column({allowNull: true, validate: {notEmpty: false}})
+  @IsString()
+  @MaxLength(500)
   description: string;
 
   @Column({allowNull: false, validate: {notEmpty: false}})
+  @IsString()
   genre: string;
 
-  @Column({allowNull: true, validate: {notEmpty: true}})
+  @Column({allowNull: true, validate: {notEmpty: false}})
+  @IsNumber()
   numberOfPages: number;
 
   @CreatedAt

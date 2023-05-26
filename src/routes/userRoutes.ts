@@ -7,6 +7,7 @@ import {RequestCustom} from '../utils/types';
 import {Service} from 'typedi';
 import { validateDto } from '../middleware/validateDto';
 import User from '../database/models/user';
+import { UpdateUserDto } from '../database/models/dtos/userDto'
 
 @Service()
 export class UserRouter {
@@ -42,6 +43,7 @@ export class UserRouter {
       '/:id',
       authenticateUserToken,
       isAdmin,
+      validateDto(UpdateUserDto),
       async (req: Request, res: Response) => {
         await this.userController.updateUser(req, res);
       },
