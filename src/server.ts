@@ -16,8 +16,8 @@ app.get('/', (req: Request, res: Response) => {
   res.send('<h1>Hello from Q Software Book Management</h1>');
 });
 
-app.use(Container.get(UserRouter).getRouter());
-app.use(Container.get(BookRouter).getRouter());
+app.use('/users', Container.get(UserRouter).getRouter());
+app.use('/books', Container.get(BookRouter).getRouter());
 
 //Error handler must be last app.use!!
 app.use((err, req: Request, res: Response, next: NextFunction) => {

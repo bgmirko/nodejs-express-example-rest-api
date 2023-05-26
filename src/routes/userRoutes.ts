@@ -16,11 +16,11 @@ export class UserRouter {
   }
 
   initRouter() {
-    this.router.get('/users', async (req: Request, res: Response) => {
+    this.router.get('/', async (req: Request, res: Response) => {
       await this.userController.getUsers(req, res);
     });
     this.router.post(
-      '/users/new',
+      '/',
       authenticateUserToken,
       isAdmin,
       async (req: Request, res: Response) => {
@@ -28,7 +28,7 @@ export class UserRouter {
       },
     );
     this.router.delete(
-      '/users/delete/:id',
+      '/:id',
       authenticateUserToken,
       isAdmin,
       async (req: Request, res: Response) => {
@@ -36,7 +36,7 @@ export class UserRouter {
       },
     );
     this.router.put(
-      '/users/update/:id',
+      '/:id',
       authenticateUserToken,
       isAdmin,
       async (req: Request, res: Response) => {
@@ -44,29 +44,24 @@ export class UserRouter {
       },
     );
     this.router.post(
-      '/users/deactivate',
+      '/deactivate',
       authenticateUserToken,
       async (req: RequestCustom, res: Response) => {
         await this.userController.deactivateUser(req, res);
       },
     );
-    this.router.post('/users/login', async (req: Request, res: Response) => {
+    this.router.post('/login', async (req: Request, res: Response) => {
       await this.userController.loginUser(req, res);
     });
-    this.router.post(
-      '/users/refresh_token',
-      async (req: Request, res: Response) => {
-        await this.userController.refreshToken(req, res);
-      },
-    );
+    this.router.post('/refresh_token', async (req: Request, res: Response) => {
+      await this.userController.refreshToken(req, res);
+    });
   }
 
   public getRouter() {
     return this.router;
   }
 }
-
-const router = express.Router();
 
 /**
  * @openapi

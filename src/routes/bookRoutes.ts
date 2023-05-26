@@ -16,11 +16,11 @@ export class BookRouter {
   }
 
   initRouts() {
-    this.router.get('/books', async (req: Request, res: Response) => {
+    this.router.get('/', async (req: Request, res: Response) => {
       await this.bookController.getBooks(req, res);
     });
     this.router.post(
-      '/books/new',
+      '/',
       authenticateUserToken,
       authorPermissionCreateBook,
       async (req: Request, res: Response) => {
@@ -28,14 +28,14 @@ export class BookRouter {
       },
     );
     this.router.delete(
-      '/books/delete/:id',
+      '/:id',
       authenticateUserToken,
       async (req: RequestCustom, res: Response) => {
         await this.bookController.deleteBook(req, res);
       },
     );
     this.router.put(
-      '/books/update/:id',
+      '/:id',
       authenticateUserToken,
       async (req: RequestCustom, res: Response) => {
         await this.bookController.updateBook(req, res);
