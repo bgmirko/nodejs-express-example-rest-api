@@ -26,14 +26,14 @@ const options: swaggerJsdoc.Options = {
     ],
   },
   apis: [
-    path.join(__dirname, '../routes/*.js'),
-    path.join(__dirname, '../schemas/*.js'),
+    path.join(__dirname, '../routes/*.*s'),
+    path.join(__dirname, '../schemas/*.*s'),
   ],
 };
 
 const swaggerSpec = swaggerJsdoc(options);
 
-function swaggerDocs(app: Express, port: number) {
+function swaggerDocs(app: Express) {
   // Swagger page
   app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 

@@ -27,10 +27,11 @@ app.use((err, req: Request, res: Response, next: NextFunction) => {
   });
 });
 
+swaggerDocs(app);
+
 app.listen(PORT, () => {
   sequelize.sync().then(() => {
     /* eslint-disable no-console */
     console.log(`App running on port ${PORT}`);
   });
-  swaggerDocs(app, 3000);
 });
