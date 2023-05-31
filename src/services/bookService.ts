@@ -1,62 +1,46 @@
 import {Service} from 'typedi';
 import Book from '../database/models/book';
 import db from '../database/models';
+import { ModelStatic } from 'sequelize';
+import BookRepository from '../database/repositories/book';
 
 @Service()
 export class BookService {
-  // TODO implement type
-  private db;
+  private bookRepository: BookRepository;
+  private model: ModelStatic<Book>
+  private idKeyName: string;
 
-  // TODO inject database
   constructor() {
-    this.db = db;
+    this.bookRepository = new BookRepository();
+    this.model = this.bookRepository.getModel();
+    this.idKeyName = Book.primaryKeyAttribute;
   }
   // fetch books with pagination
-  async getBooks(query): Promise<{count: number; rows: [Book]}> {
-    return this.db.Book.findAndCountAll({
+  async getBooks(query): Promise<{count: number; rows: Book[]}> {
+    const options = {
       attributes: {exclude: ['userId']},
-      offset: query?.cursor ?? 0,
-      limit: query?.limit ?? 10,
-    });
-  }
-
-  async createBook(book: Book): Promise<Book> {
-    return this.db.Book.create({
-      ...book,
-    });
+    };
+    return this.bookRepository.findAndCountAll(options, query);
   }
 
   async getBookById(id: number): Promise<Book> {
-    return this.db.Book.findOne({
-      where: {
-        id,
-      },
-      raw: true,
-    });
+    const options = { raw: true}
+    return this.bookRepository.getById(this.idKeyName, id, options);
   }
 
-  async deleteBook(id: number): Promise<boolean> {
-    return this.db.Book.destroy({
-      where: {
-        id,
-      },
-    });
+  async createBook(book: Book): Promise<Book> {
+    return this.bookRepository.create(book);
+  }
+
+  async deleteBook(id: number): Promise<number> {
+    return this.bookRepository.delete(this.idKeyName, id);
   }
 
   /*
    * Update Book data
    */
   async updateBook(id: number, bookData: Partial<Book>): Promise<Book> {
-    const result = await this.db.Book.update(
-      {
-        ...bookData,
-      },
-      {
-        where: {
-          id,
-        },
-      },
-    );
+    await this.bookRepository.update(this.idKeyName, id, bookData);
 
     return this.getBookById(id);
   }
