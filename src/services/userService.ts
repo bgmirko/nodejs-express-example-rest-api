@@ -1,64 +1,52 @@
 import User from '../database/models/user';
 import {Service} from 'typedi';
-import db from '../database/models';
+import UserRepository from '../database/repositories/user';
+import {IRequestQuery} from '../utils/types';
+import Book from '../database/models/book';
+import { ModelStatic } from 'sequelize';
 
 @Service()
 export class UserService {
-  // TODO implement type
-  private db;
+  private userRepository: UserRepository;
+  private model: ModelStatic<User>
+  private idKeyName: string;
 
-  // TODO inject database
-  constructor(){
-    this.db = db;
-  } 
-  // fetch Users with pagination
-  async getUsers(query): Promise<{count: number; rows: [User]}> {
-    return this.db.User.findAndCountAll({
-      attributes: {exclude: ['deleteAt']},
-      include: [{model: this.db.Book, as: 'books'}],
-      offset: query?.cursor ?? 0,
-      limit: query?.limit ?? 10,
-    });
+  constructor() {
+    this.userRepository = new UserRepository();
+    this.model = this.userRepository.getModel();
+    this.idKeyName = User.primaryKeyAttribute;
   }
 
-  async createUser(user: User): Promise<User> {
-    return this.db.User.create({
-      ...user,
-    });
+  // fetch Users with pagination
+  async getUsers(query: IRequestQuery): Promise<{count: number; rows: User[]}> {
+    const options = {
+      attributes: {exclude: ['deleteAt']},
+      include: [{model: Book, as: 'books'}],
+    };
+    return this.userRepository.findAndCountAll(options, query);
   }
 
   async getUserById(id: string): Promise<User> {
-    return this.db.User.findOne({
-      where: {
-        uuid: id,
-      },
+    const options = {
       attributes: {exclude: ['password']},
       raw: true,
-    });
+    };
+    return this.userRepository.getById(this.idKeyName, id, options);
   }
 
-  async softDeleteUser(id: string): Promise<boolean> {
-    return this.db.User.destroy({
-      where: {
-        uuid: id,
-      },
-    });
+  async createUser(user: User): Promise<User> {
+    return this.userRepository.create(user);
+  }
+
+  async softDeleteUser(id: string): Promise<number> {
+    return this.userRepository.delete(this.idKeyName, id);
   }
 
   /*
    * Update User data
    */
   async updateUser(id: string, userData: Partial<User>): Promise<User> {
-    await this.db.User.update(
-      {
-        ...userData,
-      },
-      {
-        where: {
-          uuid: id,
-        },
-      },
-    );
+    await this.userRepository.update(this.idKeyName, id, userData);
 
     return this.getUserById(id);
   }
@@ -67,7 +55,7 @@ export class UserService {
    * Deactivate User data
    */
   async deactivateUser(uuid: string): Promise<User> {
-    await this.db.User.update(
+    await this.model.update(
       {
         active: false,
       },
@@ -82,7 +70,7 @@ export class UserService {
   }
 
   async getUserByUsername(username: string): Promise<User> {
-    return this.db.User.findOne({
+    return this.model.findOne({
       where: {
         username,
       },

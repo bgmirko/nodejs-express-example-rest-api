@@ -17,3 +17,8 @@ export interface TokenData {
   iat: string;
   exp: string;
 }
+
+export interface IRequestQuery {
+  cursor?: number;
+  limit?: number;
+}

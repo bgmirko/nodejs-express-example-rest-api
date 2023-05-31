@@ -19,7 +19,7 @@ import {
 } from 'class-validator';
 import Book from './book';
 
-@Table({tableName: 'User'})
+@Table({tableName: 'User', paranoid: true})
 export default class User extends Model<User> {
   @Column({
     type: DataType.UUID,
