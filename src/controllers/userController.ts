@@ -1,15 +1,10 @@
 import {UserService} from '../services/userService';
 import type {Request, Response} from 'express';
 import User from '../database/models/user';
-import bcrypt from 'bcryptjs';
-import {
-  generateAccessToken,
-  generateRefreshAccessToken,
-} from '../utils/jwtToken';
-import {TokenUserPayload, TokenData, RequestCustom} from '../utils/types';
-import jwt from 'jsonwebtoken';
+
+import {TokenUserPayload, RequestCustom} from '../utils/types';
 import {RoleType} from '../utils/enums';
-import { Service } from 'typedi';
+import {Service} from 'typedi';
 
 @Service()
 export class UserController {
@@ -121,95 +116,6 @@ export class UserController {
       });
     } catch (error) {
       res.status(500).json({
-        success: false,
-        message: error.message,
-      });
-    }
-  }
-
-  async loginUser(req: Request, res: Response) {
-    try {
-      const password: string = req.body.password;
-      const username: string = req.body.username;
-
-      const user: User = await this.userService.getUserByUsername(username);
-
-      if (user == null) {
-        return res.status(400).json({
-          success: false,
-          message: 'Username or password are not correct',
-        });
-      }
-
-      if (!user.active) {
-        return res.status(400).json({
-          success: false,
-          message: 'Your account is deactivated',
-        });
-      }
-
-      if (await bcrypt.compare(password, user.password)) {
-        const userTokenData: TokenUserPayload = {
-          uuid: user.uuid,
-          role: user.role,
-        };
-        const accessToken = generateAccessToken(userTokenData);
-        const refreshToken = generateRefreshAccessToken(userTokenData);
-        res.json({
-          success: true,
-          accessToken,
-          refreshToken,
-          message: 'User login successfully',
-        });
-      } else {
-        res.status(400).json({
-          success: false,
-          message: 'Username or password are not correct',
-        });
-      }
-    } catch (error) {
-      res.status(500).json({
-        success: false,
-        message: error.message,
-      });
-    }
-  }
-
-  async refreshToken(req: Request, res: Response) {
-    try {
-      if (!req.body.refreshToken) {
-        throw new Error('refreshToken missing');
-      }
-
-      jwt.verify(
-        req.body.refreshToken,
-        process.env.REFRESH_TOKEN_SECRET,
-        (err: any, userTokenData: TokenData) => {
-          if (err) {
-            return res.sendStatus(401);
-          }
-
-          const tokenUserPayload: TokenUserPayload = {
-            uuid: userTokenData.uuid,
-            role: userTokenData.role,
-          };
-
-          // TODO refresh token should be stored in database
-
-          // if refresh token is valid create new token and refresh token
-          const accessToken: string = generateAccessToken(tokenUserPayload);
-          const refreshToken: string =
-            generateRefreshAccessToken(tokenUserPayload);
-          res.json({
-            success: true,
-            accessToken,
-            refreshToken,
-            message: 'Token refreshed successfully',
-          });
-        },
-      );
-    } catch (error) {
-      return res.status(500).json({
         success: false,
         message: error.message,
       });

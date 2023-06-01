@@ -5,9 +5,9 @@ import {authenticateUserToken} from '../middleware/authenticateToken';
 import {isAdmin} from '../middleware/isAdmin';
 import {RequestCustom} from '../utils/types';
 import {Service} from 'typedi';
-import { validateDto } from '../middleware/validateDto';
+import {validateDto} from '../middleware/validateDto';
 import User from '../database/models/user';
-import { UpdateUserDto } from '../database/models/dtos/userDto'
+import {UpdateUserDto} from '../database/models/dtos/userDto';
 
 @Service()
 export class UserRouter {
@@ -55,12 +55,6 @@ export class UserRouter {
         await this.userController.deactivateUser(req, res);
       },
     );
-    this.router.post('/login', async (req: Request, res: Response) => {
-      await this.userController.loginUser(req, res);
-    });
-    this.router.post('/refresh_token', async (req: Request, res: Response) => {
-      await this.userController.refreshToken(req, res);
-    });
   }
 
   public getRouter() {
@@ -182,56 +176,6 @@ export class UserRouter {
  *     responses:
  *      200:
  *        description: Success
- *      400:
- *        description: Bad request
- */
-
-/**
- * @openapi
- * '/users/login':
- *  post:
- *     tags:
- *     - User
- *     summary: Login
- *     description: User Login
- *     requestBody:
- *      required: true
- *      content:
- *        application/json:
- *           schema:
- *              $ref: '#/components/schemas/LoginUserInput'
- *     responses:
- *      200:
- *        description: Success
- *        content:
- *          application/json:
- *            schema:
- *              $ref: '#/components/schemas/LoginResponse'
- *      400:
- *        description: Bad request
- */
-
-/**
- * @openapi
- * '/users/refresh_token':
- *  post:
- *     tags:
- *     - User
- *     summary: Refresh token
- *     description: Use this route to refresh token when token time expire
- *     requestBody:
- *      required: true
- *      content:
- *        application/json:
- *           schema:
- *              $ref: '#/components/schemas/RefreshTokenInput'
- *     responses:
- *      200:
- *        description: Success
- *        content:
- *          application/json:
- *            schema:
- *              $ref: '#/components/schemas/LoginResponse'
  *      400:
  *        description: Bad request
  */

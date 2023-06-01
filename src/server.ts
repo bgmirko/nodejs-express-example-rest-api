@@ -3,6 +3,7 @@ import express, {Request, Response, NextFunction} from 'express';
 import { sequelize } from "./database/models";
 import {UserRouter} from './routes/userRoutes';
 import {BookRouter} from './routes/bookRoutes';
+import {AuthRouter} from './routes/authRoutes';
 import swaggerDocs from './utils/swagger';
 import {Container} from 'typedi';
 
@@ -17,6 +18,7 @@ app.get('/', (req: Request, res: Response) => {
 });
 
 app.use('/users', Container.get(UserRouter).getRouter());
+app.use('/auth', Container.get(AuthRouter).getRouter());
 app.use('/books', Container.get(BookRouter).getRouter());
 
 //Error handler must be last app.use!!
